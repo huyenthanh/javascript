@@ -15,8 +15,7 @@
 - Understand how asynchronous code work & apply in practice (API call or any place we can as mock API in code).
 - Get familiar with DevTools.
 
-## MAIN FEATURE
-- Feature:
+# MAIN FEATURE
  - Login/ logout
  - Create post with title, content, type
  - Edit, delete post
