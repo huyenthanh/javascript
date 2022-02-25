@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #055160;
+  --secondary-color: #adb5bd;
+}
+
+/* Override link style */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+  opacity: 0.8;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.nav-logo {
+  font-size: 36px;
+  font-weight: bold;
+}
