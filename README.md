@@ -5,6 +5,7 @@
 
 # TECHNICAL
 - HTML5/CSS3
+- Bootstrap
 - JavaScript
 - Parcel
 
@@ -21,6 +22,7 @@
  - Edit, delete post
  - Add/edit/delete comment for a post
  - Search post by title
+
 # TIMELINE
 - Estimated time: 7 days (23/02 - 03/03)
 - [Timeline detail](https://docs.google.com/document/d/1PChr3fqh7gOpt6wV-IyQekOnWm0ZJ4hE/edit?rtpof=true)
