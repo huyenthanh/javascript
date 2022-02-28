@@ -49,9 +49,6 @@ export default class AuthView {
       // Validation form values
       const isLogin = this.validateLoginForm(this.form);
       isLogin && handleLogin(formValues);
-
-      // Reset form
-      this.form.reset();
     });
   }
 }
