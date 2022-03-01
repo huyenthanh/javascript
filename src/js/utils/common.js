@@ -28,9 +28,8 @@ function setTextContent(parent, selector, text) {
 function getFormValues(form) {
   const formValues = {};
   const data = new FormData(form);
+
   for (const [key, value] of data) {
-    console.log(key);
-    console.log(value);
     formValues[key] = value;
   }
   return formValues;

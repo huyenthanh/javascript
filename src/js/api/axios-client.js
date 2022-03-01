@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { API } from '../constants/api';
 
+/**
+ * Create a new instance of axios
+ */
 const axiosClient = axios.create({
   baseURL: API.BASE_URL,
   headers: {
@@ -8,6 +11,9 @@ const axiosClient = axios.create({
   },
 });
 
+/**
+ * Add a response interceptor
+ */
 axiosClient.interceptors.response.use(
   function (response) {
     return response.data;

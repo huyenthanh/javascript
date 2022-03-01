@@ -4,7 +4,7 @@ import { toast } from '../utils/toast';
 
 /**
  * @class AuthController
- * Links the user input and the view output for User.
+ * Authentication controller for user
  */
 export default class AuthController {
   constructor(model, view) {
@@ -14,9 +14,9 @@ export default class AuthController {
   }
 
   /**
-   * Get user from model
-   * User, save data to local storage and switch to home page
-   * No user, show error
+   * Method handle login
+   * Get values from view to login model
+   * Save user to local storage and switch to home page when login success
    * @param {data} object the data form values
    */
   handleLogin = async (data) => {

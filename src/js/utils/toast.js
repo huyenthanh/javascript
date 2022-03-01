@@ -1,5 +1,5 @@
-import Toastify from 'toastify-js'
-import 'toastify-js/src/toastify.css'
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
 
 export const toast = {
   info(message) {
@@ -12,7 +12,7 @@ export const toast = {
       style: {
         background: '#03a9f4',
       },
-    }).showToast()
+    }).showToast();
   },
 
   success(message) {
@@ -25,7 +25,7 @@ export const toast = {
       style: {
         background: '#4caf50',
       },
-    }).showToast()
+    }).showToast();
   },
 
   error(message) {
@@ -38,6 +38,6 @@ export const toast = {
       style: {
         background: '#ef5350',
       },
-    }).showToast()
+    }).showToast();
   },
-}
+};
