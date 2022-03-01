@@ -13,6 +13,7 @@ const userApi = {
 
   /**
    * userApi get user by id
+   * @param {id} string
    */
   getUserById(id) {
     const url = `${API.USER_URL}/${id}`;

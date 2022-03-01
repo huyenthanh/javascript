@@ -26,7 +26,7 @@ export default class AuthController {
       if (user) {
         localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
         toast.success(LOGIN_MESSAGE.SUCCEED);
-
+        // switch to home page
         setTimeout(() => {
           window.location.assign('../');
         }, 1000);

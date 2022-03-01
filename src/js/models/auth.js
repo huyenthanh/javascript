@@ -1,8 +1,8 @@
-import userApi from '../api/userApi';
+import userApi from '../api/user-api';
 
 /**
  * @class AuthModel
- * Manages the data of user.
+ * Manages the data for authentication.
  */
 export default class AuthModel {
   constructor() {}
