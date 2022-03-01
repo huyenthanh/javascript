@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "nguyen@gmail.com",
+      "userName": "nguyen",
+      "password": "12345678",
+      "avatar": "https://gravatar.com/avatar/9bd9f8a95d1392f1a3bd92fcd705b935?s=400&d=robohash&r=x"
+    },
+    {
+      "id": 2,
+      "email": "tra@gmail.com",
+      "userName": "tra",
+      "password": "12345678",
+      "avatar": "https://robohash.org/9bd9f8a95d1392f1a3bd92fcd705b935?set=set4&bgset=&size=400x400"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "PHP websites sử dụng Docker Containers với PHP, Apache2 và MySQL",
+      "type": "JavaScript",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem labore officia, blanditiis beatae amet fuga, totam eius, reiciendis aspernatur. Incidunt, assumenda beatae architecto deleniti culpa maiores necessitatibus.",
+      "createdDate": "2022-02-26T08:00:05.182Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "PHP websites sử dụng Docker Containers với PHP, Apache2 và MySQL",
+      "type": "JavaScript",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem labore officia, blanditiis beatae amet fuga, totam eius, reiciendis aspernatur. Incidunt, assumenda beatae architecto deleniti culpa maiores necessitatibus.",
+      "createdDate": "2022-02-26T08:00:05.182Z",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "PHP websites sử dụng Docker Containers với PHP, Apache2 và MySQL",
+      "type": "JavaScript",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem labore officia, blanditiis beatae amet fuga, totam eius, reiciendis aspernatur. Incidunt, assumenda beatae architecto deleniti culpa maiores necessitatibus.",
+      "createdDate": "2022-02-26T08:00:05.182Z",
+      "userId": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "userId": 1,
+      "content": "comment"
+    }
+  ]
+}

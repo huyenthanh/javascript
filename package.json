@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "json-server": "json-server --watch src/json-server/db.json",
     "start": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,10 +14,20 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "eslint": "^8.10.0",
     "husky": "^7.0.4",
     "parcel": "^2.3.2"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "json-server": "^0.17.0",
+    "parcel-bundler": "^1.12.5",
+    "toastify-js": "^1.11.2"
   }
 }

@@ -21,7 +21,7 @@
       <section class="login">
         <div class="container">
           <div class="vh-100 d-flex justify-content-center align-items-center">
-            <form id="login-form" class="login-form col-md-4 p-5" novalidate>
+            <form id="login-form" class="login-form col-md-4 p-5" novalidate >
               <h3 class="text-center login-title">Sign In</h3>
               <div class="form-group col-md-12 mb-3">
                 <label for="login-email">Email</label>
@@ -29,7 +29,6 @@
                   type="email"
                   class="form-control"
                   name="email"
-                  required
                 />
                 <p class="invalid-feedback"></p>
               </div>
@@ -39,8 +38,6 @@
                   type="password"
                   class="form-control"
                   name="password"
-                  minlength="8"
-                  required
                 />
                 <p class="invalid-feedback"></p>
               </div>
@@ -54,5 +51,7 @@
         </div>
       </section>
     </main>
+
+    <script src="../js/apps/auth.js"></script>
   </body>
 </html>
