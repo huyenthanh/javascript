@@ -1,5 +1,5 @@
 import { getElementById, getFormValues, setTextContent } from '../utils/common';
-import { getEmailError, getPasswordError } from '../utils/validity';
+import { checkEmail, checkPassword } from '../utils/validity';
 
 /**
  * @class AuthView
@@ -18,8 +18,8 @@ export default class AuthView {
   validateLoginForm(form) {
     // Get errors
     const errors = {
-      email: getEmailError(form),
-      password: getPasswordError(form),
+      email: checkEmail(form),
+      password: checkPassword(form),
     };
 
     // Set errors
@@ -47,8 +47,8 @@ export default class AuthView {
       if (!formValues) return;
 
       // Validation form values
-      const isLogin = this.validateLoginForm(this.form);
-      isLogin && handleLogin(formValues);
+      const isFormValid = this.validateLoginForm(this.form);
+      isFormValid && handleLogin(formValues);
     });
   }
 }

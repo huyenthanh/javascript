@@ -1,38 +1,52 @@
 import { ERROR_MESSAGE } from '../constants/message';
 import { REGEX_VALUE } from '../constants/regex-value';
 
+const isRequired = (value) => {
+  return Boolean(value);
+};
+
+const isEmailValid = (email) => {
+  return REGEX_VALUE.REGEX_EMAIL.test(email.trim());
+};
+
+const isPasswordValid = (pass) => {
+  return REGEX_VALUE.REGEX_PASSWORD.test(pass.trim());
+};
+
 /**
- * Function get email error
+ * Function check email
  * Value field email empty
  * Value field password address at less than 8 characters
  * @param {object} form
  */
-const getEmailError = (form) => {
+const checkEmail = (form) => {
   const emailElement = form.querySelector('[name="email"]');
   if (!emailElement) return;
 
-  if (!emailElement.value) return ERROR_MESSAGE.EMAIL_REQUIRED;
+  if (!isRequired(emailElement.value)) return ERROR_MESSAGE.EMAIL_REQUIRED;
 
-  if (!REGEX_VALUE.REGEX_EMAIL.test(emailElement.value.trim()))
-    return ERROR_MESSAGE.EMAIL_VALID;
+  if (!isEmailValid(emailElement.value)) return ERROR_MESSAGE.EMAIL_VALID;
+
   return '';
 };
 
 /**
- * Function get password error
+ * Function check password
  * Value field password empty
  * Value field password address at less than 8 characters
  * @param {object} form
  */
-const getPasswordError = (form) => {
+const checkPassword = (form) => {
   const passwordElement = form.querySelector('[name="password"]');
   if (!passwordElement) return;
 
-  if (!passwordElement.value) return ERROR_MESSAGE.PASSWORD_REQUIRED;
+  if (!isRequired(passwordElement.value))
+    return ERROR_MESSAGE.PASSWORD_REQUIRED;
 
-  if (!REGEX_VALUE.REGEX_PASSWORD.test(passwordElement.value.trim()))
+  if (!isPasswordValid(passwordElement.value))
     return ERROR_MESSAGE.PASSWORD_VALID;
+
   return '';
 };
 
-export { getEmailError, getPasswordError };
+export { checkEmail, checkPassword };
