@@ -39,7 +39,7 @@ export default class AuthView {
    * @param {function} handleLogin
    */
   bindLogin(handleLogin) {
-    this.form.addEventListener('submit', (event) => {
+    this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       // Get values in form
@@ -48,7 +48,9 @@ export default class AuthView {
 
       // Validation form values
       const isFormValid = this.validateLoginForm(this.form);
-      isFormValid && handleLogin(formValues);
+      if (isFormValid) {
+        await handleLogin(formValues);
+      }
     });
   }
 }
