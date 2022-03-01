@@ -1,3 +1,5 @@
+import Storage from '../utils/storage';
+
 /**
  * Function retrieve an element from the DOM
  * @param {string} selector
@@ -37,4 +39,34 @@ function getFormValues(form) {
   return formValues;
 }
 
-export { getElementById, setTextContent, getFormValues };
+/**
+ * Function check login
+ * User login, header display username information, add post link and logout
+ * User is not login, display login link
+ * @param {object} form
+ */
+function checkLogin() {
+  const addEditElement = getElementById('add-edit');
+  const loginElement = getElementById('login');
+  const userDropdown = getElementById('dropdown');
+  const userAvatar = userDropdown.querySelector('.avatar');
+  const userName = userDropdown.querySelector('.username');
+  const userLogout = userDropdown.querySelector('.logout');
+  const user = Storage.getItem();
+
+  if (user) {
+    loginElement.remove();
+
+    if (addEditElement) addEditElement.textContent = 'Add a new post';
+    if (userAvatar) userAvatar.src = user.avatar;
+    if (userName) userName.textContent = user.userName;
+    if (userLogout) userLogout.textContent = 'Logout';
+  } else {
+    userDropdown.remove();
+    addEditElement.remove();
+
+    loginElement.textContent = 'Login';
+  }
+}
+
+export { getElementById, setTextContent, getFormValues, checkLogin };
