@@ -2,7 +2,7 @@
  * Function retrieve an element from the DOM
  * @param {string} selector
  */
-function getElement(selector) {
+function getElementById(selector) {
   const element = document.getElementById(selector);
   if (!element) return;
   return element;
@@ -29,9 +29,11 @@ function getFormValues(form) {
   const formValues = {};
   const data = new FormData(form);
   for (const [key, value] of data) {
+    console.log(key);
+    console.log(value);
     formValues[key] = value;
   }
   return formValues;
 }
 
-export {getElement, setTextContent, getFormValues };
+export {getElementById, setTextContent, getFormValues };

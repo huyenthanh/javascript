@@ -1,13 +1,13 @@
-/**
- * @class AuthView
- * Visual representation of the model.
- */
-import { getElement, getFormValues, setTextContent } from '../utils/common';
+import { getElementById, getFormValues, setTextContent } from '../utils/common';
 import { getEmailError, getPasswordError } from '../utils/validity';
 
+/**
+ * @class AuthView
+ * Visual representation for user login.
+ */
 export default class AuthView {
   constructor() {
-    this.form = getElement('login-form');
+    this.form = getElementById('login-form');
   }
 
   /**

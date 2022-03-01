@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from "../../constants/message";
-import { REGEX_VALUE } from '../../constants/regex-value';
+import { ERROR_MESSAGE } from '../constants/message';
+import { REGEX_VALUE } from '../constants/regex-value';
 
 /**
  * Function get email error
@@ -13,7 +13,7 @@ const getEmailError = (form) => {
 
   if (!emailElement.value) return ERROR_MESSAGE.EMAIL_REQUIRED;
 
-  if (!REGEX_VALUE.regexEmail.test(emailElement.value.trim()))
+  if (!REGEX_VALUE.REGEX_EMAIL.test(emailElement.value.trim()))
     return ERROR_MESSAGE.EMAIL_VALID;
   return '';
 };
@@ -30,7 +30,7 @@ const getPasswordError = (form) => {
 
   if (!passwordElement.value) return ERROR_MESSAGE.PASSWORD_REQUIRED;
 
-  if (!REGEX_VALUE.regexPassWord.test(passwordElement.value.trim()))
+  if (!REGEX_VALUE.REGEX_PASSWORD.test(passwordElement.value.trim()))
     return ERROR_MESSAGE.PASSWORD_VALID;
   return '';
 };

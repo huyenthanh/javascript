@@ -1,13 +1,18 @@
+import { API } from '../constants/api.js';
 import axiosClient from './axiosClient.js';
 
 const userApi = {
+  // Function get all user
   getAll(params) {
-    const url = '/users'
-    return axiosClient.get(url, { params })
+    const url = API.USER_URL;
+
+    return axiosClient.get(url, { params });
   },
 
-  getById(id) {
-    const url = `/users/${id}`;
+ // Function get user by id
+  getUserById(id) {
+    const url = `${API.USER_URL}/${id}`;
+
     return axiosClient.get(url);
   },
 };
