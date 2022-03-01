@@ -1,5 +1,5 @@
 import { LOGIN_MESSAGE } from '../constants/message';
-import STORAGE_KEYS from '../constants/storage-keys';
+import Storage from '../utils/storage';
 import { toast } from '../utils/toast';
 
 /**
@@ -24,9 +24,10 @@ export default class AuthController {
       const user = await this.model.login(data);
 
       if (user) {
-        localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
+        // Save user to local storage
+        Storage.setItem(user);
         toast.success(LOGIN_MESSAGE.SUCCEED);
-        // switch to home page
+        // Switch to home page after 1s
         setTimeout(() => {
           window.location.assign('../');
         }, 1000);

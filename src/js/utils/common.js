@@ -18,7 +18,9 @@ function setTextContent(parent, selector, text) {
   if (!parent) return;
 
   const element = parent.querySelector(selector);
-  if (element) element.textContent = text;
+  if (element) {
+    element.textContent = text;
+  }
 }
 
 /**
@@ -35,4 +37,4 @@ function getFormValues(form) {
   return formValues;
 }
 
-export {getElementById, setTextContent, getFormValues };
+export { getElementById, setTextContent, getFormValues };
