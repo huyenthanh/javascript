@@ -38,7 +38,7 @@ export default class AuthView {
    * Get data from form login
    * @param {function} handleLogin
    */
-  getLoginForm(handleLogin) {
+  bindLogin(handleLogin) {
     this.form.addEventListener('submit', (event) => {
       event.preventDefault();
 

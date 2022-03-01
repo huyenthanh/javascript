@@ -10,7 +10,7 @@ export default class AuthController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.view.getLoginForm(this.handleLogin);
+    this.view.bindLogin(this.handleLogin);
   }
 
   /**
