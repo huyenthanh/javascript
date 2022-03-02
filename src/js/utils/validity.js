@@ -1,5 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/message';
-import { REGEX_VALUE } from '../constants/regex-value';
+import { ERROR_MESSAGE, REGEX_VALUE } from '../constants';
 
 const isRequired = (value) => {
   return Boolean(value);

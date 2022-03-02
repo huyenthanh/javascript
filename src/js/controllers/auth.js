@@ -1,6 +1,5 @@
-import { LOGIN_MESSAGE } from '../constants/message';
-import Storage from '../utils/storage';
-import { toast } from '../utils/toast';
+import { LOGIN_MESSAGE } from '../constants';
+import { Toast, Storage } from '../utils';
 
 /**
  * @class AuthController
@@ -26,16 +25,16 @@ export default class AuthController {
       if (user) {
         // Save user to local storage
         Storage.setItem(user);
-        toast.success(LOGIN_MESSAGE.SUCCEED);
+        Toast.success(LOGIN_MESSAGE.SUCCEED);
         // Switch to home page after 1s
         setTimeout(() => {
           window.location.assign('../');
         }, 1000);
       } else {
-        toast.error(LOGIN_MESSAGE.FAILED);
+        Toast.error(LOGIN_MESSAGE.FAILED);
       }
     } catch (error) {
-      toast.error(error);
+      Toast.error(error);
     }
   };
 }

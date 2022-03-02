@@ -1,19 +1,18 @@
-import userApi from '../api/user-api';
+import { Api } from '../api';
+import { URL_API } from '../constants';
 
 /**
  * @class AuthModel
  * Manages the data for authentication.
  */
 export default class AuthModel {
-  constructor() {}
-
   /**
    * Call login api to user login to app
    * @param {string} email
    * @param {string} password
    */
   async login({ email, password }) {
-    const users = await userApi.getAll();
+    const users = await Api.getAll(URL_API.USER_URL);
     const user = users.find(
       (result) => result.email === email && result.password === password
     );

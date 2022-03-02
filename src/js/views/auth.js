@@ -1,5 +1,10 @@
-import { getElementById, getFormValues, setTextContent } from '../utils/common';
-import { checkEmail, checkPassword } from '../utils/validity';
+import {
+  checkEmail,
+  checkPassword,
+  getElementById,
+  getFormValues,
+  setTextContent,
+} from '../utils';
 
 /**
  * @class AuthView
@@ -48,9 +53,10 @@ export default class AuthView {
 
       // Validation form values
       const isFormValid = this.validateLoginForm(this.form);
-      if (isFormValid) {
-        await handleLogin(formValues);
-      }
+      isFormValid && (await handleLogin(formValues));
+      // if (isFormValid) {
+      //   await handleLogin(formValues);
+      // }
     });
   }
 }
