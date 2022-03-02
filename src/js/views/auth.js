@@ -53,10 +53,10 @@ export default class AuthView {
 
       // Validation form values
       const isFormValid = this.validateLoginForm(this.form);
-      isFormValid && (await handleLogin(formValues));
-      // if (isFormValid) {
-      //   await handleLogin(formValues);
-      // }
+
+      if (isFormValid) {
+        await handleLogin(formValues);
+      }
     });
   }
 }

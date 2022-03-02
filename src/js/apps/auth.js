@@ -1,5 +1,5 @@
-import AuthController from '../controllers';
-import AuthModel from '../models';
-import AuthView from '../views';
+import AuthController from '../controllers/auth';
+import AuthModel from '../models/auth';
+import AuthView from '../views/auth';
 
-export const Auth = new AuthController(new AuthModel(), new AuthView());
+new AuthController(new AuthModel(), new AuthView());

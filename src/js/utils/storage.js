@@ -6,7 +6,7 @@ import { STORAGE_KEYS } from '../constants';
  */
 export class Storage {
   static setItem(data) {
-    return localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data));
   }
 
   static getItem() {
