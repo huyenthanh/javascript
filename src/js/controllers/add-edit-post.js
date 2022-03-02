@@ -1,31 +1,17 @@
 import { Storage, Toast } from '../utils';
 
 /**
- * @class PostController
- * Post controller for post
- * Link the user input and the view output for post
+ * @class AddEditPostController
+ * Add edit post controller for post
+ * Link the user input and the view output for add edit post
  * @param model
  * @param view
  */
-export default class PostController {
+export default class AddEditPostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
   }
-
-  /**
-   * Method get post list
-   * Get posts data from postModel to view
-   */
-  async getPostList() {
-    try {
-      const data = await this.model.getPosts();
-      this.view.renderPostList(data);
-    } catch (error) {
-      Toast.error(error);
-    }
-  }
-
   /**
    * Method handle post form submit
    * @param {object} formData
@@ -54,7 +40,7 @@ export default class PostController {
     }
   };
 
-   /**
+  /**
    * Method get default values in add-edit post
    */
   async getDefaultValues() {
