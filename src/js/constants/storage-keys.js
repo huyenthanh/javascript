@@ -1,5 +1,4 @@
-const STORAGE_KEYS = {
+export const STORAGE_KEYS = {
   USER: 'user',
 };
 
-export default STORAGE_KEYS;

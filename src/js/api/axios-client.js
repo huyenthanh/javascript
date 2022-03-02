@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { API } from '../constants/api';
+import { URL_API } from '../constants';
+
 
 /**
  * Create a new instance of axios
  */
 const axiosClient = axios.create({
-  baseURL: API.BASE_URL,
+  baseURL: URL_API.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
