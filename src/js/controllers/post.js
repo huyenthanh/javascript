@@ -11,10 +11,6 @@ export default class PostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-
-    (async () => {
-      await this.getPostList();
-    })();
   }
 
   /**

@@ -1,4 +1,9 @@
-import { checkLogin, getElementById, setTextContent, Storage } from '../utils';
+import {
+  authenticationApp,
+  getElementById,
+  setTextContent,
+  Storage,
+} from '../utils';
 
 /**
  * @class PostListView
@@ -10,7 +15,14 @@ export default class PostListView {
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
     this.user = Storage.getItem();
-    checkLogin();
+  }
+
+  /**
+   * Check the authenticated user
+   * If user is logged in, the user can create, edit, delete post and comment for post
+   */
+  static authentication(){
+    authenticationApp();
   }
 
   /**
@@ -57,10 +69,11 @@ export default class PostListView {
    */
   renderPostList(posts) {
     if (!Array.isArray(posts) || posts.length === 0) return;
-
     posts.forEach((post) => {
       const liElement = this.createPostElement(post);
       this.ulElement.appendChild(liElement);
     });
   }
 }
+
+PostListView.authentication();
