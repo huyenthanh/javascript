@@ -1,10 +1,10 @@
 import postApi from '../api/post-api';
 
 /**
- * @class PostModel
- * Manages the post data.
+ * @class PostListModel
+ * Manages the post list data.
  */
-export default class PostModel {
+export default class PostListModel {
   constructor() {}
 
    /**

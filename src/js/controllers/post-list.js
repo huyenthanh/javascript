@@ -1,12 +1,12 @@
 import { toast } from '../utils/toast';
 
 /**
- * @class PostController
- * Post controller for post
+ * @class PostListController
+ * PostList controller for posts
  * @param model
  * @param view
  */
-export default class PostController {
+export default class PostListController {
   constructor(model, view) {
     this.model = model;
     this.view = view;

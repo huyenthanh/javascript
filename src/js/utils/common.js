@@ -49,22 +49,17 @@ function checkLogin() {
   const addEditElement = getElementById('add-edit');
   const loginElement = getElementById('login');
   const userDropdown = getElementById('dropdown');
-  const userAvatar = userDropdown.querySelector('.avatar');
-  const userName = userDropdown.querySelector('.username');
-  const userLogout = userDropdown.querySelector('.logout');
   const user = Storage.getItem();
 
   if (user) {
     loginElement.remove();
-
-    if (addEditElement) addEditElement.textContent = 'Add a new post';
-    if (userAvatar) userAvatar.src = user.avatar;
-    if (userName) userName.textContent = user.userName;
-    if (userLogout) userLogout.textContent = 'Logout';
+    addEditElement.textContent = 'Add a new post';
+    setTextContent(userDropdown, '.avatar', user.avatar);
+    setTextContent(userDropdown, '.username', user.userName);
+    setTextContent(userDropdown, '.logout', 'Logout');
   } else {
     userDropdown.remove();
     addEditElement.remove();
-
     loginElement.textContent = 'Login';
   }
 }

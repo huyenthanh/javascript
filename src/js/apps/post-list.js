@@ -1,5 +1,5 @@
-import PostController from '../controllers/post';
-import PostModel from '../models/post';
+import PostListController from '../controllers/post-list';
+import PostListModel from '../models/post-list';
 import PostListView from '../views/post-list';
 
-new PostController(new PostModel(), new PostListView());
+new PostListController(new PostListModel(), new PostListView());
