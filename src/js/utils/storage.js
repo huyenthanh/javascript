@@ -1,10 +1,10 @@
-import STORAGE_KEYS from '../constants/storage-keys';
+import { STORAGE_KEYS } from '../constants';
 
 /**
  * @class Storage
  * Manage data stored in the browser
  */
-export default class Storage {
+export class Storage {
   static setItem(data) {
     return localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data));
   }

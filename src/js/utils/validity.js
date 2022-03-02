@@ -1,5 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/message';
-import { REGEX_VALUE } from '../constants/regex-value';
+import { ERROR_MESSAGE, REGEX_VALUE } from '../constants';
 
 const isRequired = (value) => {
   return Boolean(value);
@@ -23,11 +22,13 @@ const checkEmail = (form) => {
   const emailElement = form.querySelector('[name="email"]');
   if (!emailElement) return;
 
-  if (!isRequired(emailElement.value)) return ERROR_MESSAGE.EMAIL_REQUIRED;
-
-  if (!isEmailValid(emailElement.value)) return ERROR_MESSAGE.EMAIL_VALID;
-
-  return '';
+  if (!isRequired(emailElement.value)) {
+    return ERROR_MESSAGE.EMAIL_REQUIRED;
+  } else if (!isEmailValid(emailElement.value)) {
+    return ERROR_MESSAGE.EMAIL_VALID;
+  } else {
+    return '';
+  }
 };
 
 /**
@@ -40,13 +41,13 @@ const checkPassword = (form) => {
   const passwordElement = form.querySelector('[name="password"]');
   if (!passwordElement) return;
 
-  if (!isRequired(passwordElement.value))
-    return ERROR_MESSAGE.PASSWORD_REQUIRED;
-
-  if (!isPasswordValid(passwordElement.value))
+  if (!isRequired(passwordElement.value)) {
+    return ERROR_MESSAGE.EMAIL_REQUIRED;
+  } else if (!isPasswordValid(passwordElement.value)) {
     return ERROR_MESSAGE.PASSWORD_VALID;
-
-  return '';
+  } else {
+    return '';
+  }
 };
 
 export { checkEmail, checkPassword };
