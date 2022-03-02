@@ -50,4 +50,21 @@ const checkPassword = (form) => {
   }
 };
 
-export { checkEmail, checkPassword };
+/**
+ * Function check required
+ * @param {object} form
+ * @param {string} selector
+ * @param {string} message
+ */
+const checkRequired = (form, selector, message) => {
+  const element = form.querySelector(selector);
+  if (!element) return;
+
+  if (!isRequired(element.value)) {
+    return message;
+  } else {
+    return '';
+  }
+};
+
+export { checkEmail, checkPassword, checkRequired };

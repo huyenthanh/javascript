@@ -59,6 +59,15 @@ export default class PostListView {
       }
     }
 
+     // Go to post edit when click edit button
+     const editButton = liElement.querySelector('[data-id="edit"]');
+     if (editButton) {
+       editButton.addEventListener('click', (event) => {
+         event.stopPropagation();
+         window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
+       });
+     }
+
     return liElement;
   }
 

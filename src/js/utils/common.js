@@ -38,6 +38,18 @@ function getFormValues(form) {
   }
   return formValues;
 }
+/**
+ * Function set field value
+ * @param {object} form
+ * @param {string} selector
+ * @param {string} value
+ */
+function setFieldValue(form, selector, value) {
+  if (!form) return;
+
+  const field = form.querySelector(selector);
+  if (field) field.value = value;
+}
 
 /**
  * Function check login
@@ -53,7 +65,7 @@ function userAuthenticated () {
 
   if (user) {
     loginElement.remove();
-    addEditElement.textContent = 'Add a new post';
+    if(addEditElement) addEditElement.textContent = 'Add a new post';
     if (userAvatar) userAvatar.src = user.avatar;
     setTextContent(userDropdown, '.username', user.userName);
     setTextContent(userDropdown, '.logout', 'Logout');
@@ -64,4 +76,10 @@ function userAuthenticated () {
   }
 }
 
-export { getElementById, setTextContent, getFormValues, userAuthenticated };
+export {
+  getElementById,
+  setTextContent,
+  getFormValues,
+  userAuthenticated,
+  setFieldValue,
+};
