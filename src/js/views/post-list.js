@@ -1,5 +1,5 @@
 import {
-  authenticationApp,
+  userAuthenticated,
   getElementById,
   setTextContent,
   Storage,
@@ -22,7 +22,7 @@ export default class PostListView {
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
   static authentication(){
-    authenticationApp();
+    userAuthenticated();
   }
 
   /**

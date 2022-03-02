@@ -44,7 +44,7 @@ function getFormValues(form) {
  * User login, header display username information, add post link and logout
  * User is not login, display login link
  */
-function authenticationApp() {
+function userAuthenticated () {
   const addEditElement = getElementById('add-edit');
   const loginElement = getElementById('login');
   const userDropdown = getElementById('dropdown');
@@ -64,4 +64,4 @@ function authenticationApp() {
   }
 }
 
-export { getElementById, setTextContent, getFormValues, authenticationApp };
+export { getElementById, setTextContent, getFormValues, userAuthenticated };
