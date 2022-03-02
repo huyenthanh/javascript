@@ -1,5 +1,4 @@
-import Storage from '../utils/storage';
-import { checkLogin, getElementById, setTextContent } from '../utils/common';
+import { checkLogin, getElementById, setTextContent, Storage } from '../utils';
 
 /**
  * @class PostListView
@@ -24,20 +23,26 @@ export default class PostListView {
 
     const { title, user, createdDate, type } = post;
 
-    const liElement = this.postTemplate.content.firstElementChild.cloneNode(true);
+    // Clone node post template for li element
+    const liElement =
+      this.postTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
+    // set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
     setTextContent(liElement, '[data-id="date"]', createdDate);
     setTextContent(liElement, '[data-id="type"]', type);
 
+    // if have id in local storage user equal userId in post
     if (this.user && this.user.id === post.userId) {
+      // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);
       if (!iconElement) return;
 
+      // append icon for menu icon in post
       this.menuIcon = liElement.querySelector('[data-id="menu"]');
-      if (this.menuIcon){
+      if (this.menuIcon) {
         this.menuIcon.appendChild(iconElement);
       }
     }

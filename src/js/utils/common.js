@@ -1,4 +1,4 @@
-import Storage from '../utils/storage';
+import { Storage } from '../utils';
 
 /**
  * Function retrieve an element from the DOM
@@ -43,18 +43,18 @@ function getFormValues(form) {
  * Function check login
  * User login, header display username information, add post link and logout
  * User is not login, display login link
- * @param {object} form
  */
 function checkLogin() {
   const addEditElement = getElementById('add-edit');
   const loginElement = getElementById('login');
   const userDropdown = getElementById('dropdown');
+  const userAvatar = userDropdown.querySelector('.avatar');
   const user = Storage.getItem();
 
   if (user) {
     loginElement.remove();
     addEditElement.textContent = 'Add a new post';
-    setTextContent(userDropdown, '.avatar', user.avatar);
+    if (userAvatar) userAvatar.src = user.avatar;
     setTextContent(userDropdown, '.username', user.userName);
     setTextContent(userDropdown, '.logout', 'Logout');
   } else {

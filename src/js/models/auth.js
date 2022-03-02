@@ -1,4 +1,4 @@
-import { Api } from '../api';
+import { Api } from '../api/axios-api';
 import { URL_API } from '../constants';
 
 /**

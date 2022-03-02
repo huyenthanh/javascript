@@ -25,11 +25,8 @@ export default class AuthController {
       if (user) {
         // Save user to local storage
         Storage.setItem(user);
-        Toast.success(LOGIN_MESSAGE.SUCCEED);
-        // Switch to home page after 1s
-        setTimeout(() => {
-          window.location.assign('../');
-        }, 1000);
+        // Switch to home page
+        window.location.assign('../');
       } else {
         Toast.error(LOGIN_MESSAGE.FAILED);
       }

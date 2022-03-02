@@ -1,16 +1,20 @@
-import { toast } from '../utils/toast';
+import { Toast } from '../utils';
 
 /**
- * @class PostListController
- * PostList controller for posts
+ * @class PostController
+ * Post controller for post
+ * Link the user input and the view output for post
  * @param model
  * @param view
  */
-export default class PostListController {
+export default class PostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.getPostList();
+
+    (async () => {
+      await this.getPostList();
+    })();
   }
 
   /**
@@ -22,7 +26,7 @@ export default class PostListController {
       const data = await this.model.getPosts();
       this.view.renderPostList(data);
     } catch (error) {
-      toast.error(error);
+      Toast.error(error);
     }
   }
 }
