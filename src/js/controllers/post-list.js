@@ -1,4 +1,4 @@
-import {Toast } from '../utils';
+import { Storage, Toast } from '../utils';
 
 /**
  * @class PostController
@@ -11,6 +11,7 @@ export default class PostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.view.bindLogout(this.handleLogout);
   }
 
   /**
@@ -19,10 +20,19 @@ export default class PostController {
    */
   async getPostList() {
     try {
-      const data = await this.model.getPosts();
+      const data = await this.model.getAll();
       this.view.renderPostList(data);
     } catch (error) {
       Toast.error(error);
     }
+  }
+
+  /**
+   * Method logout
+   * Clear local storage
+   */
+  handleLogout() {
+    Storage.removeItem();
+    location.reload();
   }
 }

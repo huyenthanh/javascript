@@ -14,6 +14,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
+    this.logoutElement  = document.querySelector('.logout');
     this.user = Storage.getItem();
   }
 
@@ -21,7 +22,7 @@ export default class PostListView {
    * Check the authenticated user
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
-  static authentication(){
+  static authentication() {
     userAuthenticated();
   }
 
@@ -46,13 +47,13 @@ export default class PostListView {
     setTextContent(liElement, '[data-id="date"]', createdDate);
     setTextContent(liElement, '[data-id="type"]', type);
 
-    // if have id in local storage user equal userId in post
+    // If have id in local storage user equal userId in post
     if (this.user && this.user.id === post.userId) {
       // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);
       if (!iconElement) return;
 
-      // append icon for menu icon in post
+      // Append icon for menu icon in post
       this.menuIcon = liElement.querySelector('[data-id="menu"]');
       if (this.menuIcon) {
         this.menuIcon.appendChild(iconElement);
@@ -69,6 +70,18 @@ export default class PostListView {
      }
 
     return liElement;
+  }
+
+  /**
+   * Add event click for logout
+   * @param {Function} handle
+   */
+  bindLogout(handle) {
+    if (this.logoutElement ) {
+      this.logoutElement .addEventListener('click', () => {
+        handle();
+      });
+    }
   }
 
   /**

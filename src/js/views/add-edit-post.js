@@ -11,6 +11,8 @@ import {
 export default class AddEditPostView {
   constructor() {
     this.form = getElementById('post-form');
+    this.title = getElementById('post-detail-title');
+    this.logoutElement  = document.querySelector('.logout');
   }
 
   /**
@@ -23,10 +25,16 @@ export default class AddEditPostView {
 
   /**
    * Query params get id
+   * Replace context title element
+   * @returns getSearchById
    */
   getSearchParams() {
     const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get('id');
+    const getSearchById = searchParams.get('id');
+
+    this.title.textContent = getSearchById ? 'Edit a post' : 'Add a post';
+
+    return getSearchById;
   }
 
   /**
@@ -64,10 +72,10 @@ export default class AddEditPostView {
     return isValid;
   }
 
-   /**
-   * init post form values
-   * @param {object} defaultValues
-   * @param {function} onSubmit
+  /**
+   * Init post form values
+   * @param {object} defaultValues This is default value for property in post
+   * @param {function} onSubmit This is a callback function
    */
   intPostForm(defaultValues, onSubmit) {
     this.setFormValues(defaultValues);
@@ -78,14 +86,24 @@ export default class AddEditPostView {
       const formValues = getFormValues(this.form);
       formValues.id = defaultValues.id;
 
-      if (!formValues) return;
-
       // Validation form values
       const isValid = this.validatePostForm(this.form);
       if (isValid) {
         await onSubmit(formValues);
       }
     });
+  }
+
+  /**
+   * Add event click for logout
+   * @param {Function} handle
+   */
+  bindLogout(handle) {
+    if (this.logoutElement) {
+      this.logoutElement.addEventListener('click', () => {
+        handle();
+      });
+    }
   }
 }
 AddEditPostView.authentication();
