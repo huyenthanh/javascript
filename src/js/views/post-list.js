@@ -14,7 +14,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
-    this.logoutElement  = document.querySelector('.logout');
+    this.logoutElement = document.querySelector('.logout');
     this.user = Storage.getItem();
   }
 
@@ -60,16 +60,45 @@ export default class PostListView {
       }
     }
 
-     // Go to post edit when click edit button
-     const editButton = liElement.querySelector('[data-id="edit"]');
-     if (editButton) {
-       editButton.addEventListener('click', (event) => {
-         event.stopPropagation();
-         window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
-       });
-     }
+    // Go to post edit when click edit button
+    const editButton = liElement.querySelector('[data-id="edit"]');
+    if (editButton) {
+      editButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
+      });
+    }
+
+    // Add click event for remove button
+    const removeButton = liElement.querySelector('[data-id="remove"]');
+    if (removeButton) {
+      removeButton.addEventListener('click', () => {
+        // Custom event with name post-delete
+        const customEvent = new CustomEvent('post-delete', {
+          bubbles: true,
+          detail: post,
+        });
+
+        // Dispatch event bubble up
+        removeButton.dispatchEvent(customEvent);
+      });
+    }
 
     return liElement;
+  }
+
+  /**
+   * Add custom events remove post with name post-delete
+   * @param {Function} handle
+   */
+  bindDeletePost(handle) {
+    document.addEventListener('post-delete', async (event) => {
+      const post = event.detail;
+      const message = 'Are you sure to remove post ?';
+      if (window.confirm(message)) {
+        handle(post.id);
+      }
+    });
   }
 
   /**
@@ -77,8 +106,8 @@ export default class PostListView {
    * @param {Function} handle
    */
   bindLogout(handle) {
-    if (this.logoutElement ) {
-      this.logoutElement .addEventListener('click', () => {
+    if (this.logoutElement) {
+      this.logoutElement.addEventListener('click', () => {
         handle();
       });
     }
@@ -89,7 +118,7 @@ export default class PostListView {
    * Use a ul and li to display the posts
    * @param {array} posts
    */
-  renderPostList(posts) {
+   renderPostList(posts) {
     if (!Array.isArray(posts) || posts.length === 0) return;
     posts.forEach((post) => {
       const liElement = this.createPostElement(post);
