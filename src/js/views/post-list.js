@@ -14,7 +14,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
-    this.userLogout = document.querySelector('.logout');
+    this.logoutElement  = document.querySelector('.logout');
     this.user = Storage.getItem();
   }
 
@@ -68,8 +68,8 @@ export default class PostListView {
    * @param {Function} handle
    */
   bindLogout(handle) {
-    if (this.userLogout) {
-      this.userLogout.addEventListener('click', () => {
+    if (this.logoutElement ) {
+      this.logoutElement .addEventListener('click', () => {
         handle();
       });
     }
