@@ -14,6 +14,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
+    this.logoutElement  = document.querySelector('.logout');
     this.user = Storage.getItem();
   }
 
@@ -21,7 +22,7 @@ export default class PostListView {
    * Check the authenticated user
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
-  static authentication(){
+  static authentication() {
     userAuthenticated();
   }
 
@@ -60,6 +61,18 @@ export default class PostListView {
     }
 
     return liElement;
+  }
+
+  /**
+   * Add event click for logout
+   * @param {Function} handle
+   */
+  bindLogout(handle) {
+    if (this.logoutElement ) {
+      this.logoutElement .addEventListener('click', () => {
+        handle();
+      });
+    }
   }
 
   /**
