@@ -11,8 +11,8 @@ export default class PostModel {
   /**
    * Call api get all post
    */
-  async getAll() {
-    return await Api.getAll(`${URL_API.POST_URL}?_expand=user`);
+  async getAll(params) {
+    return await Api.getAll(`${URL_API.POST_URL}?_expand=user`, params);
   }
 
   /**

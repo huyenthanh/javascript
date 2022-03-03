@@ -61,7 +61,7 @@ export default class AddEditPostController {
       // Query params get id
       const postId = this.view.getSearchParams();
       if (postId) {
-        defaultValues = await this.model.getPostById(postId);
+        defaultValues = await this.model.getById(postId);
       }
 
       // Pass init defaultValues and callback form submit to view
