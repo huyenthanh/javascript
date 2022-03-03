@@ -12,6 +12,7 @@ export default class AddEditPostView {
   constructor() {
     this.form = getElementById('post-form');
     this.title = getElementById('post-detail-title');
+    this.logoutElement  = document.querySelector('.logout');
   }
 
   /**
@@ -91,6 +92,18 @@ export default class AddEditPostView {
         await onSubmit(formValues);
       }
     });
+  }
+
+  /**
+   * Add event click for logout
+   * @param {Function} handle
+   */
+  bindLogout(handle) {
+    if (this.logoutElement) {
+      this.logoutElement.addEventListener('click', () => {
+        handle();
+      });
+    }
   }
 }
 AddEditPostView.authentication();

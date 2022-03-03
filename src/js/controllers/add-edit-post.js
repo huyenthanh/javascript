@@ -11,6 +11,7 @@ export default class AddEditPostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.view.bindLogout(this.handleLogout);
   }
 
   /**
@@ -69,5 +70,14 @@ export default class AddEditPostController {
     } catch (error) {
       Toast.error(error);
     }
+  }
+
+  /**
+   * Method logout
+   * Clear local storage
+   */
+  handleLogout() {
+    Storage.removeItem();
+    window.location.assign('../');
   }
 }
