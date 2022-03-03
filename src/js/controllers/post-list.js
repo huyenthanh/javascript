@@ -20,7 +20,7 @@ export default class PostController {
    */
   async getPostList() {
     try {
-      const data = await this.model.getPosts();
+      const data = await this.model.getAll();
       this.view.renderPostList(data);
     } catch (error) {
       Toast.error(error);

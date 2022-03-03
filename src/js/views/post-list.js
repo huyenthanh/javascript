@@ -47,18 +47,27 @@ export default class PostListView {
     setTextContent(liElement, '[data-id="date"]', createdDate);
     setTextContent(liElement, '[data-id="type"]', type);
 
-    // if have id in local storage user equal userId in post
+    // If have id in local storage user equal userId in post
     if (this.user && this.user.id === post.userId) {
       // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);
       if (!iconElement) return;
 
-      // append icon for menu icon in post
+      // Append icon for menu icon in post
       this.menuIcon = liElement.querySelector('[data-id="menu"]');
       if (this.menuIcon) {
         this.menuIcon.appendChild(iconElement);
       }
     }
+
+     // Go to post edit when click edit button
+     const editButton = liElement.querySelector('[data-id="edit"]');
+     if (editButton) {
+       editButton.addEventListener('click', (event) => {
+         event.stopPropagation();
+         window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
+       });
+     }
 
     return liElement;
   }

@@ -40,11 +40,24 @@ function getFormValues(form) {
 }
 
 /**
+ * Function set field value
+ * @param {object} form
+ * @param {string} selector
+ * @param {string} value
+ */
+function setFieldValue(form, selector, value) {
+  if (!form) return;
+
+  const field = form.querySelector(selector);
+  if (field) field.value = value;
+}
+
+/**
  * Function check login
  * User login, header display username information, add post link and logout
  * User is not login, display login link
  */
-function userAuthenticated () {
+function userAuthenticated() {
   const addEditElement = getElementById('add-edit');
   const loginElement = getElementById('login');
   const userDropdown = getElementById('dropdown');
@@ -53,7 +66,7 @@ function userAuthenticated () {
 
   if (user) {
     loginElement.remove();
-    addEditElement.textContent = 'Add a new post';
+    if (addEditElement) addEditElement.textContent = 'Add a new post';
     if (userAvatar) userAvatar.src = user.avatar;
     setTextContent(userDropdown, '.username', user.userName);
     setTextContent(userDropdown, '.logout', 'Logout');
@@ -64,4 +77,10 @@ function userAuthenticated () {
   }
 }
 
-export { getElementById, setTextContent, getFormValues, userAuthenticated };
+export {
+  getElementById,
+  setTextContent,
+  getFormValues,
+  userAuthenticated,
+  setFieldValue,
+};
