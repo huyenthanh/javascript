@@ -1,4 +1,4 @@
-import {Toast } from '../utils';
+import { Toast } from '../utils';
 
 /**
  * @class PostController

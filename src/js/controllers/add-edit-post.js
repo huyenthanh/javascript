@@ -12,26 +12,32 @@ export default class AddEditPostController {
     this.model = model;
     this.view = view;
   }
+
   /**
    * Method handle post form submit
-   * @param {object} formData
+   * @param {object} formData This is form values
    */
   handlePostFormSubmit = async (formData) => {
     try {
+      // Get user data to local storage
       const user = Storage.getItem();
-      // Values add post
+
+      // Create values add post
       const addFormData = {
         ...formData,
         createdDate: new Date(),
         userId: user.id,
       };
-      // Values add post
+
+      // Get values form to model
       const savedPost = formData.id
-        ? await this.model.updatePost(formData)
-        : await this.model.addPost(addFormData);
-      // show success message
+        ? await this.model.update(formData) // If have id in post form call model update post
+        : await this.model.add(addFormData); // If don't have id in post form call model add post
+
+      // Show success message
       Toast.success('Save post successfully!');
-      // redirect to detail page
+
+      // Redirect to detail page
       setTimeout(() => {
         window.location.assign(`/pages/post-detail.html?id=${savedPost.id}`);
       }, 1000);
@@ -45,17 +51,20 @@ export default class AddEditPostController {
    */
   async getDefaultValues() {
     try {
-      // init defaultValues
+      // Init defaultValues for property in post
       let defaultValues = {
         title: '',
         type: '',
         content: '',
       };
+
       // Query params get id
       const postId = this.view.getSearchParams();
       if (postId) {
         defaultValues = await this.model.getPostById(postId);
       }
+
+      // Pass init defaultValues and callback form submit to view
       this.view.intPostForm(defaultValues, this.handlePostFormSubmit);
     } catch (error) {
       Toast.error(error);
