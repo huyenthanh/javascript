@@ -14,7 +14,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
-    this.logoutElement  = document.querySelector('.logout');
+    this.logoutElement = document.querySelector('.logout');
     this.user = Storage.getItem();
   }
 
@@ -41,7 +41,7 @@ export default class PostListView {
       this.postTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
-    // set text content for element
+    // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
     setTextContent(liElement, '[data-id="date"]', createdDate);
@@ -60,14 +60,14 @@ export default class PostListView {
       }
     }
 
-     // Go to post edit when click edit button
-     const editButton = liElement.querySelector('[data-id="edit"]');
-     if (editButton) {
-       editButton.addEventListener('click', (event) => {
-         event.stopPropagation();
-         window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
-       });
-     }
+    // Go to post edit when click edit button
+    const editButton = liElement.querySelector('[data-id="edit"]');
+    if (editButton) {
+      editButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
+      });
+    }
 
     return liElement;
   }
@@ -77,11 +77,24 @@ export default class PostListView {
    * @param {Function} handle
    */
   bindLogout(handle) {
-    if (this.logoutElement ) {
-      this.logoutElement .addEventListener('click', () => {
+    if (this.logoutElement) {
+      this.logoutElement.addEventListener('click', () => {
         handle();
       });
     }
+  }
+
+  /**
+   * Add event search input
+   * @param {Function} handle
+   */
+  bindSearchInput(handle) {
+    const searchInput = getElementById('search-input');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (event) => {
+      handle(event.target.value);
+    });
   }
 
   /**
@@ -90,7 +103,10 @@ export default class PostListView {
    * @param {array} posts
    */
   renderPostList(posts) {
-    if (!Array.isArray(posts) || posts.length === 0) return;
+    // Clear current list
+    this.ulElement.textContent = '';
+
+    // For each post, create a li element and append it to the page
     posts.forEach((post) => {
       const liElement = this.createPostElement(post);
       this.ulElement.appendChild(liElement);
