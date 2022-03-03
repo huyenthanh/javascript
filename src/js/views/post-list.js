@@ -68,10 +68,11 @@ export default class PostListView {
    * @param {Function} handle
    */
   bindLogout(handle) {
-    if (this.userLogout)
+    if (this.userLogout) {
       this.userLogout.addEventListener('click', () => {
         handle();
       });
+    }
   }
 
   /**
