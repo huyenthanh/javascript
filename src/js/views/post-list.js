@@ -95,6 +95,8 @@ export default class PostListView {
     document.addEventListener('post-delete', async (event) => {
       const post = event.detail;
       const message = 'Are you sure to remove post ?';
+
+      // Method displays a dialog box with a message
       if (window.confirm(message)) {
         handle(post.id);
       }
