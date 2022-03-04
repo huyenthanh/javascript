@@ -41,7 +41,7 @@ export default class PostListView {
       this.postTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
-    // set text content for element
+    // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
     setTextContent(liElement, '[data-id="date"]', createdDate);
@@ -116,12 +116,28 @@ export default class PostListView {
   }
 
   /**
+   * Add event search input
+   * @param {Function} handle
+   */
+  bindSearchInput(handle) {
+    const searchInput = getElementById('search-input');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (event) => {
+      handle(event.target.value);
+    });
+  }
+
+  /**
    * Render post list
    * Use a ul and li to display the posts
    * @param {array} posts
    */
-   renderPostList(posts) {
-    if (!Array.isArray(posts) || posts.length === 0) return;
+  renderPostList(posts) {
+    // Clear current list
+    this.ulElement.textContent = '';
+
+    // For each post, create a li element and append it to the page
     posts.forEach((post) => {
       const liElement = this.createPostElement(post);
       this.ulElement.appendChild(liElement);
