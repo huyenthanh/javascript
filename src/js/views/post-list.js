@@ -69,7 +69,38 @@ export default class PostListView {
       });
     }
 
+    // Add click event for remove button
+    const removeButton = liElement.querySelector('[data-id="remove"]');
+    if (removeButton) {
+      removeButton.addEventListener('click', () => {
+        // Custom event with name post-delete
+        const customEvent = new CustomEvent('post-delete', {
+          bubbles: true,
+          detail: post,
+        });
+
+        // Dispatch event bubble up
+        removeButton.dispatchEvent(customEvent);
+      });
+    }
+
     return liElement;
+  }
+
+  /**
+   * Add custom events remove post with name post-delete
+   * @param {Function} handle
+   */
+  bindDeletePost(handle) {
+    document.addEventListener('post-delete', async (event) => {
+      const post = event.detail;
+      const message = 'Are you sure to remove post ?';
+
+      // Method displays a dialog box with a message
+      if (window.confirm(message)) {
+        handle(post.id);
+      }
+    });
   }
 
   /**

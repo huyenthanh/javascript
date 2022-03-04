@@ -44,4 +44,14 @@ export default class PostModel {
 
     return await Api.add(url, data);
   }
+
+  /**
+   * Call api delete post
+   * @param {object} id
+   */
+  async delete(id) {
+    const url = `${URL_API.POST_URL}/${id}`;
+
+    return await Api.remove(url);
+  }
 }

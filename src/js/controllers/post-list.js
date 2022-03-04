@@ -12,8 +12,26 @@ export default class PostController {
     this.model = model;
     this.view = view;
     this.view.bindLogout(this.handleLogout);
+    this.view.bindDeletePost(this.handleDeletePost);
+  }
+
+  /**
+   * Method handle delete post
+   * @param {id} postId
+   */
+  handleDeletePost = async (postId) => {
+    try {
+      // Call delete post by post id
+      await this.model.delete(postId);
+
+      // Render post list
+      const data = await this.model.getAll();
+      this.view.renderPostList(data);
+    } catch (error) {
+      Toast.error(error);
     this.view.bindSearchInput(this.handSearchInput);
   }
+};
 
   /**
    * Method handle search change
