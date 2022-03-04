@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import {
-  userAuthenticated,
+  isUserAuthenticated,
   getElementById,
   setTextContent,
-  Storage,
+  isOwner,
 } from '../utils';
 
 /**
@@ -16,7 +16,6 @@ export default class PostListView {
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
     this.logoutElement = document.querySelector('.logout');
-    this.user = Storage.getItem();
   }
 
   /**
@@ -24,7 +23,7 @@ export default class PostListView {
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
   static authentication() {
-    userAuthenticated();
+    isUserAuthenticated();
   }
 
   /**
@@ -35,7 +34,7 @@ export default class PostListView {
   createPostElement(post) {
     if (!post) return;
 
-    const { title, user, createdDate, type } = post;
+    const { title, user, createdDate, type, userId } = post;
 
     // Clone node post template for li element
     const liElement =
@@ -53,7 +52,7 @@ export default class PostListView {
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post
-    if (this.user && this.user.id === post.userId) {
+    if (isOwner(userId)) {
       // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);
       if (!iconElement) return;

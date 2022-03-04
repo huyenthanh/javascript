@@ -1,4 +1,4 @@
-import { Storage, Toast } from '../utils';
+import { querySearchParamsById, Storage, Toast } from '../utils';
 
 /**
  * @class PostDetailController
@@ -17,8 +17,7 @@ export default class PostDetailController {
   async getPostValues() {
     try {
       // Query search params get id
-      const searchParams = new URLSearchParams(window.location.search);
-      const postId = searchParams.get('id');
+      const postId = querySearchParamsById();
 
       // With postId call post detail data render to view
       const data = await this.model.getById(postId);

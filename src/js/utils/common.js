@@ -57,7 +57,7 @@ function setFieldValue(form, selector, value) {
  * User login, header display username information, add post link and logout
  * User is not login, display login link
  */
-function userAuthenticated() {
+function isUserAuthenticated() {
   const addEditElement = getElementById('add-edit');
   const loginElement = getElementById('login');
   const userDropdown = getElementById('dropdown');
@@ -77,10 +77,30 @@ function userAuthenticated() {
   }
 }
 
+/**
+ * Function check the current user is owner post and comment
+ * @param {string} userId This is a user id of post
+ */
+function isOwner(userId) {
+  const userStorage = Storage.getItem();
+  return userStorage && userStorage.id === userId;
+}
+
+/**
+ * Function check the current user is owner post
+ * @param {string} userId This is a user id of post
+ */
+function querySearchParamsById() {
+  const searchParams = new URLSearchParams(window.location.search);
+  return searchParams.get('id');
+}
+
 export {
   getElementById,
   setTextContent,
   getFormValues,
-  userAuthenticated,
+  isUserAuthenticated,
   setFieldValue,
+  isOwner,
+  querySearchParamsById
 };

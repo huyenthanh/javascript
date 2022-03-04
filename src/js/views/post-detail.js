@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { getElementById, setTextContent, Storage, userAuthenticated } from '../utils';
+import { getElementById, isOwner, setTextContent, Storage, isUserAuthenticated } from '../utils';
 
 /**
  * @class PostDetailView
@@ -21,7 +21,7 @@ export default class PostDetailView {
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
   static authentication() {
-    userAuthenticated();
+    isUserAuthenticated();
   }
 
   /**
@@ -43,7 +43,7 @@ export default class PostDetailView {
     avatarUserElement.src = user.avatar;
 
     // Display edit and delete icon on comment item if the current user is owner post
-    if (this.userStorage && this.userStorage.id === userId) {
+    if (isOwner(userId)) {
       // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);
       if (!iconElement) return;
