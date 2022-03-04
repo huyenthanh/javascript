@@ -51,7 +51,7 @@ export default class PostDetailView {
     const avatarUserElement = liElement.querySelector('[data-id="avatar"]');
     avatarUserElement.src = user.avatar;
 
-    // Display edit and delete icon on comment item if the current user is owner post
+    // Display edit and delete icon on comment item if the current user is owner comment
     if (isOwner(userId)) {
       // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);

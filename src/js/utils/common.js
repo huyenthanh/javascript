@@ -104,5 +104,5 @@ export {
   isUserAuthenticated,
   setFieldValue,
   isOwner,
-  querySearchParamsById
+  querySearchParamsById,
 };
