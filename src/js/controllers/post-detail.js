@@ -49,19 +49,20 @@ export default class PostDetailController {
    * Method get list comment render to view
    * @param {string} postId
    */
-  handleAddComment = async (formValues, post) => {
+  handleAddComment = async (formValues, postId) => {
     try {
-      const { id, userId } = post;
+      // Get user data form local storage
+      const user =Storage.getItem();
       // Values add comment
       const addCommentValues = {
         ...formValues,
-        postId: id,
-        userId: userId,
+        postId: postId,
+        userId: user.id,
       };
       // Call model add comment
       await this.model.add(addCommentValues);
       // Call method get all comment data by post id
-      this.getCommentList(id);
+      this.getCommentList(postId);
     } catch (error) {
       Toast.error(error);
     }

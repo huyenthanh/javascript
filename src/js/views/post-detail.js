@@ -96,8 +96,10 @@ export default class PostDetailView {
       const isFormValid = this.validateCommentForm(formCommentElement);
 
       if (isFormValid) {
-        await handleAddComment(formValues, post);
+        await handleAddComment(formValues, post.id);
       }
+      // Reset form
+      formCommentElement.reset();
     });
   }
 
