@@ -1,8 +1,9 @@
+import dayjs from 'dayjs';
 import {
-  userAuthenticated,
+  isUserAuthenticated,
   getElementById,
   setTextContent,
-  Storage,
+  isOwner,
 } from '../utils';
 
 /**
@@ -15,7 +16,6 @@ export default class PostListView {
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
     this.logoutElement = document.querySelector('.logout');
-    this.user = Storage.getItem();
   }
 
   /**
@@ -23,7 +23,7 @@ export default class PostListView {
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
   static authentication() {
-    userAuthenticated();
+    isUserAuthenticated();
   }
 
   /**
@@ -34,7 +34,7 @@ export default class PostListView {
   createPostElement(post) {
     if (!post) return;
 
-    const { title, user, createdDate, type } = post;
+    const { title, user, createdDate, type, userId } = post;
 
     // Clone node post template for li element
     const liElement =
@@ -44,11 +44,15 @@ export default class PostListView {
     // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
-    setTextContent(liElement, '[data-id="date"]', createdDate);
+    setTextContent(
+      liElement,
+      '[data-id="date"]',
+      dayjs(createdDate).format('DD/MM/YYYY')
+    );
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post
-    if (this.user && this.user.id === post.userId) {
+    if (isOwner(userId)) {
       // Clone node icon template
       const iconElement = this.iconsTemplate.content.cloneNode(true);
       if (!iconElement) return;
@@ -69,10 +73,20 @@ export default class PostListView {
       });
     }
 
+    // Go to post detail when click on post item
+    const divElement = liElement.firstElementChild;
+    if (divElement) {
+      divElement.addEventListener('click', () => {
+        window.location.assign(`/pages/post-detail.html?id=${post.id}`);
+      });
+    }
+
     // Add click event for remove button
     const removeButton = liElement.querySelector('[data-id="remove"]');
     if (removeButton) {
-      removeButton.addEventListener('click', () => {
+      removeButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+
         // Custom event with name post-delete
         const customEvent = new CustomEvent('post-delete', {
           bubbles: true,

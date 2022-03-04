@@ -5,14 +5,14 @@ import {
   setTextContent,
   checkRequired,
   getElementById,
-  userAuthenticated,
+  isUserAuthenticated,
+  querySearchParamsById,
 } from '../utils';
 
 export default class AddEditPostView {
   constructor() {
     this.form = getElementById('post-form');
-    this.title = getElementById('post-detail-title');
-    this.logoutElement  = document.querySelector('.logout');
+    this.logoutElement = document.querySelector('.logout');
   }
 
   /**
@@ -20,21 +20,18 @@ export default class AddEditPostView {
    * If user is logged in, the user can create, edit, delete post and comment for post
    */
   static authentication() {
-    userAuthenticated();
+    isUserAuthenticated();
   }
 
   /**
-   * Query params get id
-   * Replace context title element
-   * @returns getSearchById
+   * Replace text context add edit title
    */
-  getSearchParams() {
-    const searchParams = new URLSearchParams(window.location.search);
-    const getSearchById = searchParams.get('id');
-
-    this.title.textContent = getSearchById ? 'Edit a post' : 'Add a post';
-
-    return getSearchById;
+  static setTitleHeader() {
+    const titleHeader = getElementById('add-edit-title');
+    // Get id search params
+    const postId = querySearchParamsById();
+    //Set content element
+    titleHeader.textContent = postId ? 'Edit a post' : 'Add a post';
   }
 
   /**
@@ -106,4 +103,6 @@ export default class AddEditPostView {
     }
   }
 }
+
 AddEditPostView.authentication();
+AddEditPostView.setTitleHeader();

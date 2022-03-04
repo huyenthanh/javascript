@@ -13,6 +13,7 @@ export default class PostController {
     this.view = view;
     this.view.bindLogout(this.handleLogout);
     this.view.bindDeletePost(this.handleDeletePost);
+    this.view.bindSearchInput(this.handSearchInput);
   }
 
   /**
@@ -29,9 +30,8 @@ export default class PostController {
       this.view.renderPostList(data);
     } catch (error) {
       Toast.error(error);
-    this.view.bindSearchInput(this.handSearchInput);
-  }
-};
+    }
+  };
 
   /**
    * Method handle search change

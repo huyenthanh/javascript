@@ -1,4 +1,4 @@
-import { Storage, Toast } from '../utils';
+import { querySearchParamsById, Storage, Toast } from '../utils';
 
 /**
  * @class AddEditPostController
@@ -60,7 +60,7 @@ export default class AddEditPostController {
       };
 
       // Query params get id
-      const postId = this.view.getSearchParams();
+      const postId = querySearchParamsById();
       if (postId) {
         defaultValues = await this.model.getById(postId);
       }

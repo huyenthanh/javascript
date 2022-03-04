@@ -26,6 +26,16 @@ export default class PostModel {
   }
 
   /**
+   * Call api get comment children resources by post id
+   * @param {string} id
+   */
+  async getChildrenById(id) {
+    const url = `${URL_API.POST_URL}/${id}${URL_API.COMMENT_URL}?_expand=user`;
+
+    return await Api.getById(url);
+  }
+
+  /**
    * Call api update post
    * @param {object} data
    */
