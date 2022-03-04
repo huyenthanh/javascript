@@ -9,6 +9,7 @@ export default class PostDetailController {
     this.model = model;
     this.view = view;
     this.view.bindLogout(this.handleLogout);
+    this.view.bindAddComment(this.handleAddComment);
   }
 
   /**
@@ -37,12 +38,34 @@ export default class PostDetailController {
   async getCommentList(postId) {
     try {
       // With postId call comments data for post
-      const data = await this.model.getChildrenById(postId);
+      const data = await this.model.getComments(postId);
       this.view.renderComments(data);
     } catch (error) {
       Toast.error(error);
     }
   }
+
+  /**
+   * Method get list comment render to view
+   * @param {string} postId
+   */
+  handleAddComment = async (formValues, post) => {
+    try {
+      const { id, userId } = post;
+      // Values add comment
+      const addCommentValues = {
+        ...formValues,
+        postId: id,
+        userId: userId,
+      };
+      // Call model add comment
+      await this.model.add(addCommentValues);
+      // Call method get all comment data by post id
+      this.getCommentList(id);
+    } catch (error) {
+      Toast.error(error);
+    }
+  };
 
   /**
    * Method logout

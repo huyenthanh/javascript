@@ -3,9 +3,9 @@ const ERROR_MESSAGE = {
   EMAIL_VALID: 'Please enter a valid email address.',
   PASSWORD_REQUIRED: 'Please enter your password.',
   PASSWORD_VALID: 'Please enter a password address at least 8 characters.',
-  TITLE_REQUIRED: 'Please enter the title of this post.',
+  TITLE_REQUIRED: 'Please enter the title.',
   TYPE_REQUIRED: 'Please select a valid type.',
-  CONTENT_REQUIRED: 'Please enter the content of this post.',
+  CONTENT_REQUIRED: 'Please enter the content.',
 };
 
 const LOGIN_MESSAGE = {

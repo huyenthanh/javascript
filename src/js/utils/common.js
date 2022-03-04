@@ -36,6 +36,7 @@ function getFormValues(form) {
   for (const [key, value] of data) {
     formValues[key] = value;
   }
+
   return formValues;
 }
 
@@ -83,15 +84,16 @@ function isUserAuthenticated() {
  */
 function isOwner(userId) {
   const userStorage = Storage.getItem();
+
   return userStorage && userStorage.id === userId;
 }
 
 /**
- * Function check the current user is owner post
- * @param {string} userId This is a user id of post
+ * Function query search params by id
  */
 function querySearchParamsById() {
   const searchParams = new URLSearchParams(window.location.search);
+
   return searchParams.get('id');
 }
 
