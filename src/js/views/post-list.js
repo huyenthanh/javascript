@@ -42,10 +42,14 @@ export default class PostListView {
       this.postTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
-    // set text content for element
+    // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
-    setTextContent(liElement, '[data-id="date"]', dayjs(createdDate).format('DD/MM/YYYY'));
+    setTextContent(
+      liElement,
+      '[data-id="date"]',
+      dayjs(createdDate).format('DD/MM/YYYY')
+    );
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post
@@ -78,7 +82,40 @@ export default class PostListView {
       });
     }
 
+    // Add click event for remove button
+    const removeButton = liElement.querySelector('[data-id="remove"]');
+    if (removeButton) {
+      removeButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        // Custom event with name post-delete
+        const customEvent = new CustomEvent('post-delete', {
+          bubbles: true,
+          detail: post,
+        });
+
+        // Dispatch event bubble up
+        removeButton.dispatchEvent(customEvent);
+      });
+    }
+
     return liElement;
+  }
+
+  /**
+   * Add custom events remove post with name post-delete
+   * @param {Function} handle
+   */
+  bindDeletePost(handle) {
+    document.addEventListener('post-delete', async (event) => {
+      const post = event.detail;
+      const message = 'Are you sure to remove post ?';
+
+      // Method displays a dialog box with a message
+      if (window.confirm(message)) {
+        handle(post.id);
+      }
+    });
   }
 
   /**
@@ -94,12 +131,28 @@ export default class PostListView {
   }
 
   /**
+   * Add event search input
+   * @param {Function} handle
+   */
+  bindSearchInput(handle) {
+    const searchInput = getElementById('search-input');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (event) => {
+      handle(event.target.value);
+    });
+  }
+
+  /**
    * Render post list
    * Use a ul and li to display the posts
    * @param {array} posts
    */
   renderPostList(posts) {
-    if (!Array.isArray(posts) || posts.length === 0) return;
+    // Clear current list
+    this.ulElement.textContent = '';
+
+    // For each post, create a li element and append it to the page
     posts.forEach((post) => {
       const liElement = this.createPostElement(post);
       this.ulElement.appendChild(liElement);
