@@ -4,7 +4,7 @@ export const Api = {
   /**
    * Get all item
    * @param {string} url
-   * @param {string} params
+   * @param {object} params
    */
   getAll(url, params) {
     return axiosClient.get(url, { params });

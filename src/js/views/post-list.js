@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {
   userAuthenticated,
   getElementById,
@@ -14,7 +15,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
-    this.logoutElement  = document.querySelector('.logout');
+    this.logoutElement = document.querySelector('.logout');
     this.user = Storage.getItem();
   }
 
@@ -44,7 +45,7 @@ export default class PostListView {
     // set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
-    setTextContent(liElement, '[data-id="date"]', createdDate);
+    setTextContent(liElement, '[data-id="date"]', dayjs(createdDate).format('DD/MM/YYYY'));
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post
@@ -60,14 +61,22 @@ export default class PostListView {
       }
     }
 
-     // Go to post edit when click edit button
-     const editButton = liElement.querySelector('[data-id="edit"]');
-     if (editButton) {
-       editButton.addEventListener('click', (event) => {
-         event.stopPropagation();
-         window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
-       });
-     }
+    // Go to post edit when click edit button
+    const editButton = liElement.querySelector('[data-id="edit"]');
+    if (editButton) {
+      editButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
+      });
+    }
+
+    // Go to post detail when click on post item
+    const divElement = liElement.firstElementChild;
+    if (divElement) {
+      divElement.addEventListener('click', () => {
+        window.location.assign(`/pages/post-detail.html?id=${post.id}`);
+      });
+    }
 
     return liElement;
   }
@@ -77,8 +86,8 @@ export default class PostListView {
    * @param {Function} handle
    */
   bindLogout(handle) {
-    if (this.logoutElement ) {
-      this.logoutElement .addEventListener('click', () => {
+    if (this.logoutElement) {
+      this.logoutElement.addEventListener('click', () => {
         handle();
       });
     }

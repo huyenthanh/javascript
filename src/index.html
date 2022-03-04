@@ -6,23 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Page</title>
-   <!-- Bootstrap CSS -->
-   <link
-   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-   rel="stylesheet"
-   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-   crossorigin="anonymous"
- />
- <!-- Font awesome -->
- <link
-   rel="stylesheet"
-   href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-   crossorigin="anonymous"
- />
- <link rel="stylesheet" href="styles/main.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles/main.css" />
   <link rel="stylesheet" href="styles/home.css" />
 </head>
+
 <body>
   <!-- Header -->
   <header>
@@ -33,7 +26,7 @@
             <a class="nav-logo" href="index.html">Blog</a>
           </li>
           <li class="nav-item d-flex">
-            <a id="add-edit" class="nav-link" href="pages/add-edit-post.html"></a>
+            <a id="add-edit" class="nav-link" href="pages/post-detail.html"></a>
             <a id="login" class="nav-link" href="pages/login.html"></a>
             <div id="dropdown">
               <img src="#" class="rounded-circle avatar" type="button" id="dropdownMenu" data-bs-toggle="dropdown" />
@@ -47,6 +40,7 @@
       </div>
     </nav>
   </header>
+
   <!-- Main -->
   <main>
     <section class="banner container-fluid d-flex align-items-center justify-content-center">
@@ -62,14 +56,17 @@
             aria-label="search" aria-describedby="search" />
         </div>
         <!-- Post list -->
+        <a href="./pages/post-detail.html"></a>
         <ul id="post-list" class="row post-list justify-content-center ps-0"></ul>
       </div>
     </section>
   </main>
+
   <!-- Footer -->
   <footer class="text-center text-muted py-3">
     <small>Created by Nguyen</small>
   </footer>
+
   <!-- This is a template HTML for a post item -->
   <template id="post-template">
     <li class="col-lg-10">
@@ -98,7 +95,8 @@
       </div>
     </li>
   </template>
-  <!--template add, edit icon -->
+
+   <!-- This is a template HTML for button edit, remove icon in post -->
   <template id="icons-template">
     <div data-id="edit" class="menu-item rounded-circle" role="button">
       <i class="fas fa-pen"></i>
@@ -107,11 +105,13 @@
       <i class="fas fa-trash"></i>
     </div>
   </template>
+
   <!-- Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous">
-  </script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
   <script src="./js/apps/post-list.js"></script>
 </body>
+
 </html>
