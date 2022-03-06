@@ -8,6 +8,7 @@ import {
   isUserAuthenticated,
   getFormValues,
   checkRequired,
+  setFieldValue,
 } from '../utils';
 
 /**
@@ -64,6 +65,19 @@ export default class PostDetailView {
       }
     }
 
+    // Attach events
+    // Add click event for edit button
+    const editButton = liElement.querySelector('[data-id="edit"]');
+    if (editButton) {
+      editButton.addEventListener('click', () => {
+        const formElement = getElementById('form-comment');
+        // Set data attributes in form comment element
+        formElement.dataset.id = comment.id;
+        // Set field value in form
+        setFieldValue(document, '[name="content"]', comment.content);
+      });
+    }
+
     return liElement;
   }
 
@@ -86,19 +100,24 @@ export default class PostDetailView {
   }
 
   /**
-   * Add comment
-   * @param {Function} handleAddComment
+   * Add edit comment
+   * @param {Function} onSubmit
    */
-  bindAddComment(handleAddComment) {
-    document.addEventListener('add-comment', async (event) => {
+  bindAddEditComment(onSubmit) {
+    document.addEventListener('add-edit-comment', async (event) => {
       const { formValues, formCommentElement, post } = event.detail;
+
+      // Create id attribute and set value
+      formValues.id = formCommentElement.dataset.id;
+
       // Validation form values
       const isFormValid = this.validateCommentForm(formCommentElement);
-
       if (isFormValid) {
-        await handleAddComment(formValues, post.id);
+        await onSubmit(formValues, post.id);
       }
+
       // Reset form
+      delete formCommentElement.dataset.id;
       formCommentElement.reset();
     });
   }
@@ -138,14 +157,15 @@ export default class PostDetailView {
       const formCommentElement = this.formCommentTemplate.content.firstElementChild.cloneNode(true);
       // Append form comment element in page
       this.addCommentElement.appendChild(formCommentElement);
+
       // Add click event for submit form
       formCommentElement.addEventListener('submit', (event) => {
         event.preventDefault();
 
         // Get values in form comment
         const formValues = getFormValues(formCommentElement);
-        // Custom event with name add-comment with data includes formValues, formCommentElement and post data
-        const customEvent = new CustomEvent('add-comment', {
+        // Custom event with name add-edit-comment with data includes formValues, formCommentElement and post data
+        const customEvent = new CustomEvent('add-edit-comment', {
           bubbles: true,
           detail: {
             formValues,
