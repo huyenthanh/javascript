@@ -64,9 +64,9 @@ export default class PostDetailController {
 
       // Get values form to model
       if (formData.id) {
-        await this.model.update(formData); // If have id in comment form call model update post
+        await this.model.updateComment(formData); // If have id in comment form call model update post
       } else {
-        await this.model.add(addFormData); // If don't have id in comment form call model add post
+        await this.model.addComment(addFormData); // If don't have id in comment form call model add post
       }
 
       // Show success message

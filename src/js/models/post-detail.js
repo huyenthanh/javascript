@@ -20,7 +20,7 @@ export default class PostDetailModel {
    * Call api update comment
    * @param {object} data
    */
-  async update(data) {
+  async updateComment(data) {
     const url = `${URL_API.COMMENT_URL}/${data.id}`;
 
     return await Api.update(url, data);
@@ -30,7 +30,7 @@ export default class PostDetailModel {
    * Call api add comment
    * @param {object} data
    */
-  async add(data) {
+  async addComment(data) {
     const url = URL_API.COMMENT_URL;
 
     return await Api.add(url, data);
@@ -40,7 +40,7 @@ export default class PostDetailModel {
    * Call api delete comment
    * @param {object} id
    */
-  async delete(id) {
+  async deleteComment(id) {
     const url = `${URL_API.COMMENT_URL}/${id}`;
 
     return await Api.remove(url);
