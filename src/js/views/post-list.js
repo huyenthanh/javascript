@@ -59,11 +59,13 @@ export default class PostListView {
     const editButton = liElement.querySelector('[data-id="edit"]');
     if (editButton) {
       editButton.addEventListener('click', (event) => {
+        // Prevent event bubbling to parent
         event.stopPropagation();
         window.location.assign(`/pages/add-edit-post.html?id=${post.id}`);
       });
     }
 
+    // Attach events
     // Go to post detail when click on post item
     const divElement = liElement.firstElementChild;
     if (divElement) {
@@ -76,6 +78,7 @@ export default class PostListView {
     const removeButton = liElement.querySelector('[data-id="remove"]');
     if (removeButton) {
       removeButton.addEventListener('click', (event) => {
+        // Prevent event bubbling to parent
         event.stopPropagation();
 
         // Custom event with name post-delete
@@ -108,7 +111,7 @@ export default class PostListView {
   }
 
   /**
-   * Add event click for logout
+   * Bind click event for logout
    * @param {Function} handle
    */
   bindLogout(handle) {
@@ -120,7 +123,7 @@ export default class PostListView {
   }
 
   /**
-   * Add event search input
+   * Bind input event search
    * @param {Function} handle
    */
   bindSearchInput(handle) {

@@ -1,3 +1,4 @@
+import { SUBMIT_MESSAGE } from '../constants';
 import { querySearchParamsById, Storage, Toast } from '../utils';
 
 /**
@@ -73,7 +74,7 @@ export default class PostDetailController {
       }
 
       // Show success message
-      Toast.success('Save comment successfully!');
+      Toast.success(SUBMIT_MESSAGE.COMMENT_SUCCEED);
 
       // Call method get list comment
       this.getCommentList();
@@ -103,6 +104,6 @@ export default class PostDetailController {
    */
   handleLogout() {
     Storage.removeItem();
-    location.reload();
+    window.location.assign('../index.html');
   }
 }

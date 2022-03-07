@@ -45,7 +45,7 @@ export default class AddEditPostView {
   }
 
   /**
-   * Validate login form
+   * Validate post form
    * @param {object} form
    * @return {boolean} false when invalid and true when valid
    */
@@ -70,12 +70,15 @@ export default class AddEditPostView {
   }
 
   /**
-   * Init post form values
+   * Bind submit event for add edit post
    * @param {object} defaultValues - this is default value for property in post
    * @param {function} onSubmit
    */
-  intPostForm(defaultValues, onSubmit) {
+  bindAddEditPost(defaultValues, onSubmit) {
+    // Set form values input
     this.setFormValues(defaultValues);
+
+    // Add submit event when click save button
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -93,7 +96,7 @@ export default class AddEditPostView {
   }
 
   /**
-   * Add click event for logout
+   * Bind click event for logout
    * @param {Function} handle
    */
   bindLogout(handle) {

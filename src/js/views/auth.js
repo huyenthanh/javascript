@@ -34,7 +34,7 @@ export default class AuthView {
   }
 
   /**
-   * Get data from form login
+   * Bind submit event for login
    * @param {function} handleLogin
    */
   bindLogin(handleLogin) {

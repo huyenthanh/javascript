@@ -1,9 +1,8 @@
 import { Storage, Toast } from '../utils';
 
 /**
- * @class PostController
- * Post controller for post
- * Link the user input and the view output for post
+ * @class PostListController
+ * Link the user input and the view output for post list
  * @param model
  * @param view
  */
