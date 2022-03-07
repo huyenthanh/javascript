@@ -57,34 +57,22 @@
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem"
     },
     {
-      "id": 1,
+      "id": 2,
       "postId": 1,
       "userId": 2,
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem"
     },
     {
-      "id": 1,
+      "id": 3,
       "postId": 2,
       "userId": 2,
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem"
     },
     {
-      "id": 1,
+      "id": 4,
       "postId": 3,
       "userId": 1,
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem"
-    },
-    {
-      "content": "nguyennhfdh",
-      "postId": 1,
-      "userId": 1,
-      "id": 2
-    },
-    {
-      "content": "okok",
-      "postId": 1,
-      "userId": 1,
-      "id": 3
     }
   ]
 }
