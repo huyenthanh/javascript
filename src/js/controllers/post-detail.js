@@ -8,8 +8,10 @@ export default class PostDetailController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.postId = querySearchParamsById();
     this.view.bindLogout(this.handleLogout);
     this.view.bindAddEditComment(this.handleCommentFormSubmit);
+    this.view.bindRemoveComment(this.handleRemoveComment);
   }
 
   /**
@@ -17,15 +19,12 @@ export default class PostDetailController {
    */
   async getPostValues() {
     try {
-      // Query search params get id
-      const postId = querySearchParamsById();
-
       // With postId call post detail data render to view
-      const data = await this.model.getById(postId);
+      const data = await this.model.getById(this.postId);
       this.view.renderPostDetail(data);
 
       // Call method get list comment
-      this.getCommentList(postId);
+      this.getCommentList();
     } catch (error) {
       Toast.error(error);
     }
@@ -33,12 +32,11 @@ export default class PostDetailController {
 
   /**
    * Method get list comment render to view
-   * @param {string} postId
    */
-  async getCommentList(postId) {
+  async getCommentList() {
     try {
       // With postId call comments data for post
-      const data = await this.model.getComments(postId);
+      const data = await this.model.getComments(this.postId);
       this.view.renderComments(data);
     } catch (error) {
       Toast.error(error);
@@ -48,9 +46,8 @@ export default class PostDetailController {
   /**
    * Method handle comment form submit
    * @param {object} formData
-   * @param {string} postId
    */
-   handleCommentFormSubmit = async (formData, postId) => {
+  handleCommentFormSubmit = async (formData) => {
     try {
       // Get user data to local storage
       const user = Storage.getItem();
@@ -58,7 +55,7 @@ export default class PostDetailController {
       // Values add comment
       const addFormData = {
         ...formData,
-        postId: postId,
+        postId: this.postId,
         userId: user.id,
       };
 
@@ -72,8 +69,23 @@ export default class PostDetailController {
       // Show success message
       Toast.success('Save comment successfully!');
 
-      // Call method get all comment data by post id
-      this.getCommentList(postId);
+      // Call method get list comment
+      this.getCommentList();
+    } catch (error) {
+      Toast.error(error);
+    }
+  };
+
+  /**
+   * Method handle delete post
+   * @param {id} postId
+   */
+  handleRemoveComment = async (commentId) => {
+    try {
+      // Call delete comment by id
+      await this.model.delete(commentId);
+      // Call method get list comment
+      this.getCommentList();
     } catch (error) {
       Toast.error(error);
     }
