@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { ERROR_MESSAGE } from '../constants';
+import { ERROR_MESSAGE, REMOVE_MESSAGE } from '../constants';
 import {
   getElementById,
   isOwner,
@@ -154,7 +154,7 @@ export default class PostDetailView {
   bindRemoveComment(handle) {
     document.addEventListener('comment-delete', async (event) => {
       const comment = event.detail;
-      const message = 'Are you sure to remove post ?';
+      const message = REMOVE_MESSAGE.COMMENT;
 
       // Method displays a dialog box with a message
       if (window.confirm(message)) {
