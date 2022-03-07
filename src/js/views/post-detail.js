@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { ERROR_MESSAGE } from '../constants';
+import { ERROR_MESSAGE, REMOVE_MESSAGE } from '../constants';
 import {
   getElementById,
   isOwner,
@@ -42,7 +42,8 @@ export default class PostDetailView {
     const { content, userId, user } = comment;
 
     // Clone node comment template for li element
-    const liElement = this.commentTemplate.content.firstElementChild.cloneNode(true);
+    const liElement =
+      this.commentTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
     // Set text content comment for element
@@ -78,13 +79,38 @@ export default class PostDetailView {
       });
     }
 
+    // Add click event for remove button
+    const removeButton = liElement.querySelector('[data-id="remove"]');
+    if (removeButton) {
+      removeButton.addEventListener('click', (event) => {
+        // Prevent event bubbling to parent
+        event.stopPropagation();
+
+        // Custom event with name comment-delete
+        const customEvent = new CustomEvent('comment-delete', {
+          bubbles: true,
+          detail: comment,
+        });
+        // Dispatch event bubble up
+        removeButton.dispatchEvent(customEvent);
+      });
+    }
     return liElement;
   }
 
+  /**
+   * Validate comment form
+   * @param {object} form
+   * @return {boolean} false when invalid and true when valid
+   */
   validateCommentForm(form) {
     // Get errors
     const errors = {
-      content: checkRequired(form, '[name="content"]', ERROR_MESSAGE.CONTENT_REQUIRED),
+      content: checkRequired(
+        form,
+        '[name="content"]',
+        ERROR_MESSAGE.CONTENT_REQUIRED
+      ),
     };
 
     // Set errors
@@ -100,25 +126,40 @@ export default class PostDetailView {
   }
 
   /**
-   * Add edit comment
+   * Register submit event for comment form when add edit comment
    * @param {Function} onSubmit
    */
   bindAddEditComment(onSubmit) {
     document.addEventListener('add-edit-comment', async (event) => {
-      const { formValues, formCommentElement, post } = event.detail;
-
+      const { formValues, formCommentElement } = event.detail;
       // Create id attribute and set value
       formValues.id = formCommentElement.dataset.id;
 
       // Validation form values
       const isFormValid = this.validateCommentForm(formCommentElement);
       if (isFormValid) {
-        await onSubmit(formValues, post.id);
+        await onSubmit(formValues);
       }
 
       // Reset form
       delete formCommentElement.dataset.id;
       formCommentElement.reset();
+    });
+  }
+
+  /**
+   * Register click event for remove comment
+   * @param {Function} handle
+   */
+  bindRemoveComment(handle) {
+    document.addEventListener('comment-delete', async (event) => {
+      const comment = event.detail;
+      const message = REMOVE_MESSAGE.COMMENT;
+
+      // Method displays a dialog box with a message
+      if (window.confirm(message)) {
+        await handle(comment.id);
+      }
     });
   }
 
@@ -147,14 +188,19 @@ export default class PostDetailView {
     // Set text content for elements
     setTextContent(document, '#post-detail-title', title);
     setTextContent(document, '#post-detail-username', user.userName);
-    setTextContent(document, '#post-detail-date', dayjs(createdDate).format('DD/MM/YYYY'));
+    setTextContent(
+      document,
+      '#post-detail-date',
+      dayjs(createdDate).format('DD/MM/YYYY')
+    );
     setTextContent(document, '#post-detail-content', content);
     setTextContent(document, '#post-detail-type', type);
 
     // Display form add comment if the user logged
     if (this.userStorage) {
       // Clone add comment template for add comment element
-      const formCommentElement = this.formCommentTemplate.content.firstElementChild.cloneNode(true);
+      const formCommentElement =
+        this.formCommentTemplate.content.firstElementChild.cloneNode(true);
       // Append form comment element in page
       this.addCommentElement.appendChild(formCommentElement);
 
@@ -164,13 +210,12 @@ export default class PostDetailView {
 
         // Get values in form comment
         const formValues = getFormValues(formCommentElement);
-        // Custom event with name add-edit-comment with data includes formValues, formCommentElement and post data
+        // Custom event with name add-edit-comment with data includes formValues, formCommentElement data
         const customEvent = new CustomEvent('add-edit-comment', {
           bubbles: true,
           detail: {
             formValues,
             formCommentElement,
-            post,
           },
         });
         // Dispatch event bubble up
