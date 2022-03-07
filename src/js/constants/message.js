@@ -14,8 +14,8 @@ const LOGIN_MESSAGE = {
 };
 
 const REMOVE_MESSAGE = {
-  COMMENT: 'Are you sure to remove comment ?',
-  POST: 'Are you sure to remove post ?',
+  COMMENT: 'Are you sure to remove comment?',
+  POST: 'Are you sure to remove post?',
 };
 
 export { ERROR_MESSAGE, LOGIN_MESSAGE, REMOVE_MESSAGE };

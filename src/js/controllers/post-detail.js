@@ -78,7 +78,7 @@ export default class PostDetailController {
 
   /**
    * Method handle delete comment
-   * @param {id} postId
+   * @param {id} commentId
    */
   handleRemoveComment = async (commentId) => {
     try {
