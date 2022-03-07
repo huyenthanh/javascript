@@ -11,6 +11,12 @@ export default class AddEditPostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+  }
+
+  /**
+   * Method Call handler from add edit post view
+   */
+  callViewHandler() {
     this.view.bindLogout(this.handleLogout);
   }
 

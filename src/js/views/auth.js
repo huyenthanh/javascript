@@ -1,10 +1,4 @@
-import {
-  checkEmail,
-  checkPassword,
-  getElementById,
-  getFormValues,
-  setTextContent,
-} from '../utils';
+import { checkEmail, checkPassword, getElementById, getFormValues, setTextContent } from '../utils';
 
 /**
  * @class AuthView
@@ -17,8 +11,8 @@ export default class AuthView {
 
   /**
    * Validate login form
-   * Return isValid, false when invalid and true when valid
    * @param {object} form
+   * @return {boolean} false when invalid and true when valid
    */
   validateLoginForm(form) {
     // Get errors
@@ -53,7 +47,7 @@ export default class AuthView {
 
       // Validation form values
       const isFormValid = this.validateLoginForm(this.form);
-
+      // If valid trigger submit callback, otherwise show validation errors
       if (isFormValid) {
         await handleLogin(formValues);
       }

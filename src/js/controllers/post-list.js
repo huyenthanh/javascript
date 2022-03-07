@@ -11,6 +11,12 @@ export default class PostListController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+  }
+
+  /**
+   * Method Call handler from post list view
+   */
+  callViewHandler() {
     this.view.bindLogout(this.handleLogout);
     this.view.bindDeletePost(this.handleDeletePost);
     this.view.bindSearchInput(this.handSearchInput);

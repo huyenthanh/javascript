@@ -30,7 +30,7 @@ export default class AddEditPostView {
     const titleHeader = getElementById('add-edit-title');
     // Get id search params
     const postId = querySearchParamsById();
-    //Set content element
+    // Set content element
     titleHeader.textContent = postId ? 'Edit a post' : 'Add a post';
   }
 
@@ -46,8 +46,8 @@ export default class AddEditPostView {
 
   /**
    * Validate login form
-   * Return isValid, false when invalid and true when valid
    * @param {object} form
+   * @return {boolean} false when invalid and true when valid
    */
   validatePostForm(form) {
     // Get errors
@@ -71,8 +71,8 @@ export default class AddEditPostView {
 
   /**
    * Init post form values
-   * @param {object} defaultValues This is default value for property in post
-   * @param {function} onSubmit This is a callback function
+   * @param {object} defaultValues - this is default value for property in post
+   * @param {function} onSubmit
    */
   intPostForm(defaultValues, onSubmit) {
     this.setFormValues(defaultValues);
@@ -85,6 +85,7 @@ export default class AddEditPostView {
 
       // Validation form values
       const isValid = this.validatePostForm(this.form);
+      // If valid trigger submit callback, otherwise show validation errors
       if (isValid) {
         await onSubmit(formValues);
       }
@@ -92,7 +93,7 @@ export default class AddEditPostView {
   }
 
   /**
-   * Add event click for logout
+   * Add click event for logout
    * @param {Function} handle
    */
   bindLogout(handle) {

@@ -8,6 +8,12 @@ export default class PostDetailController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+  }
+
+  /**
+   * Method Call handler from post detail view
+   */
+  callViewHandler() {
     this.view.bindLogout(this.handleLogout);
     this.view.bindAddEditComment(this.handleCommentFormSubmit);
   }
@@ -50,7 +56,7 @@ export default class PostDetailController {
    * @param {object} formData
    * @param {string} postId
    */
-   handleCommentFormSubmit = async (formData, postId) => {
+  handleCommentFormSubmit = async (formData, postId) => {
     try {
       // Get user data to local storage
       const user = Storage.getItem();

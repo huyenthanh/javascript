@@ -81,6 +81,11 @@ export default class PostDetailView {
     return liElement;
   }
 
+  /**
+   * Validate comment form
+   * @param {object} form
+   * @return {boolean} false when invalid and true when valid
+   */
   validateCommentForm(form) {
     // Get errors
     const errors = {

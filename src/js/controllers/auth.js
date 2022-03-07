@@ -13,6 +13,13 @@ export default class AuthController {
   }
 
   /**
+   * Method Call handler from login view
+   */
+  callViewHandler() {
+    this.view.bindLogin(this.handleLogin);
+  }
+
+  /**
    * Method handle login
    * Get values from view to login model
    * Save user to local storage and switch to home page when login success
