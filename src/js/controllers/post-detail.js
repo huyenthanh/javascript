@@ -77,13 +77,13 @@ export default class PostDetailController {
   };
 
   /**
-   * Method handle delete post
+   * Method handle delete comment
    * @param {id} postId
    */
   handleRemoveComment = async (commentId) => {
     try {
       // Call delete comment by id
-      await this.model.delete(commentId);
+      await this.model.deleteComment(commentId);
       // Call method get list comment
       this.getCommentList();
     } catch (error) {
