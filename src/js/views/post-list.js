@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { REMOVE_MESSAGE } from '../constants';
 import { isUserAuthenticated, getElementById, setTextContent, isOwner } from '../utils';
 
 /**
@@ -97,7 +98,7 @@ export default class PostListView {
   bindDeletePost(handle) {
     document.addEventListener('post-delete', async (event) => {
       const post = event.detail;
-      const message = 'Are you sure to remove post ?';
+      const message = REMOVE_MESSAGE.POST;
 
       // Method displays a dialog box with a message
       if (window.confirm(message)) {
