@@ -7,7 +7,7 @@ import { Storage, Toast } from '../utils';
  * @param model
  * @param view
  */
-export default class PostController {
+export default class PostListController {
   constructor(model, view) {
     this.model = model;
     this.view = view;

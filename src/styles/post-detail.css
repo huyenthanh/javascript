@@ -22,3 +22,7 @@
 .remove-button:hover {
   opacity: 1;
 }
+
+.invalid-feedback {
+  display: block;
+}

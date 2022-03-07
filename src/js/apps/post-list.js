@@ -1,6 +1,6 @@
-import PostController from '../controllers/post-list';
-import PostModel from '../models/post';
+import PostListController from '../controllers/post-list';
+import PostListModel from '../models/post-list';
 import PostListView from '../views/post-list';
 
-const posts = new PostController(new PostModel(), new PostListView());
+const posts = new PostListController(new PostListModel(), new PostListView());
 posts.getPostList();

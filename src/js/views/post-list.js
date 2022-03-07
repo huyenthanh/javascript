@@ -1,10 +1,5 @@
 import dayjs from 'dayjs';
-import {
-  isUserAuthenticated,
-  getElementById,
-  setTextContent,
-  isOwner,
-} from '../utils';
+import { isUserAuthenticated, getElementById, setTextContent, isOwner } from '../utils';
 
 /**
  * @class PostListView
@@ -37,18 +32,13 @@ export default class PostListView {
     const { title, user, createdDate, type, userId } = post;
 
     // Clone node post template for li element
-    const liElement =
-      this.postTemplate.content.firstElementChild.cloneNode(true);
+    const liElement = this.postTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
     // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
-    setTextContent(
-      liElement,
-      '[data-id="date"]',
-      dayjs(createdDate).format('DD/MM/YYYY')
-    );
+    setTextContent(liElement, '[data-id="date"]', dayjs(createdDate).format('DD/MM/YYYY'));
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post
@@ -92,7 +82,6 @@ export default class PostListView {
           bubbles: true,
           detail: post,
         });
-
         // Dispatch event bubble up
         removeButton.dispatchEvent(customEvent);
       });
@@ -112,7 +101,7 @@ export default class PostListView {
 
       // Method displays a dialog box with a message
       if (window.confirm(message)) {
-        handle(post.id);
+        await handle(post.id);
       }
     });
   }

@@ -36,6 +36,7 @@ function getFormValues(form) {
   for (const [key, value] of data) {
     formValues[key] = value;
   }
+
   return formValues;
 }
 

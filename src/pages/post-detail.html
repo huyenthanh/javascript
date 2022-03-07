@@ -84,8 +84,9 @@
   <!-- This is a template HTML for a form comment -->
   <template id="form-comment-template">
     <form id="form-comment" class="w-100">
-      <textarea data-id="content" class="form-control " placeholder="Add a comment here..." rows="5"></textarea>
-      <input type="submit" class="btn btn-primary m-3 float-end">
+      <textarea name="content" class="form-control" placeholder="Add a comment here..." rows="5"></textarea>
+      <p class="invalid-feedback"></p>
+      <input data-id="submit" type="submit" class="btn btn-primary m-3 float-end">
     </form>
   </template>
 
