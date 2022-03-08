@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { Storage } from '../utils';
 
 /**
@@ -100,6 +101,15 @@ function querySearchParamsById() {
   return searchParams.get('id');
 }
 
+/**
+ * Function format date
+ * @param {string} str
+ * @param {string} format
+ */
+function formatDate(str, format = 'DD-MM-YYYY') {
+  return dayjs(str).format(format);
+}
+
 export {
   getElementById,
   setTextContent,
@@ -108,4 +118,5 @@ export {
   setFieldValue,
   isOwner,
   querySearchParamsById,
+  formatDate,
 };
