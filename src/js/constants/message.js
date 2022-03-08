@@ -18,4 +18,9 @@ const REMOVE_MESSAGE = {
   POST: 'Are you sure to remove post?',
 };
 
-export { ERROR_MESSAGE, LOGIN_MESSAGE, REMOVE_MESSAGE };
+const SUBMIT_MESSAGE = {
+  POST_SUCCEED: 'Save post successfully!',
+  COMMENT_SUCCEED: 'Save comment successfully!',
+};
+
+export { ERROR_MESSAGE, LOGIN_MESSAGE, REMOVE_MESSAGE, SUBMIT_MESSAGE };

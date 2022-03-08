@@ -1,3 +1,4 @@
+import { SUBMIT_MESSAGE } from '../constants';
 import { querySearchParamsById, Storage, Toast } from '../utils';
 
 /**
@@ -11,12 +12,18 @@ export default class AddEditPostController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+  }
+
+  /**
+   * Method Call handler from add edit post view
+   */
+  callViewHandler() {
     this.view.bindLogout(this.handleLogout);
   }
 
   /**
    * Method handle post form submit
-   * @param {object} formData This is form values
+   * @param {object} formData - this is form values
    */
   handlePostFormSubmit = async (formData) => {
     try {
@@ -36,7 +43,7 @@ export default class AddEditPostController {
         : await this.model.add(addFormData); // If don't have id in post form call model add post
 
       // Show success message
-      Toast.success('Save post successfully!');
+      Toast.success(SUBMIT_MESSAGE.POST_SUCCEED);
 
       // Redirect to detail page
       setTimeout(() => {
@@ -52,7 +59,7 @@ export default class AddEditPostController {
    */
   async getDefaultValues() {
     try {
-      // Init defaultValues for property in post
+      // Init default values for property in post
       let defaultValues = {
         title: '',
         type: '',
@@ -66,7 +73,7 @@ export default class AddEditPostController {
       }
 
       // Pass init defaultValues and callback form submit to view
-      this.view.intPostForm(defaultValues, this.handlePostFormSubmit);
+      this.view.bindAddEditPost(defaultValues, this.handlePostFormSubmit);
     } catch (error) {
       Toast.error(error);
     }
@@ -78,6 +85,6 @@ export default class AddEditPostController {
    */
   handleLogout() {
     Storage.removeItem();
-    window.location.assign('../');
+    window.location.assign('../index.html');
   }
 }

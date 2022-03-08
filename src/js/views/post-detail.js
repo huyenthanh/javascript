@@ -42,8 +42,7 @@ export default class PostDetailView {
     const { content, userId, user } = comment;
 
     // Clone node comment template for li element
-    const liElement =
-      this.commentTemplate.content.firstElementChild.cloneNode(true);
+    const liElement = this.commentTemplate.content.firstElementChild.cloneNode(true);
     if (!liElement) return;
 
     // Set text content comment for element
@@ -106,11 +105,7 @@ export default class PostDetailView {
   validateCommentForm(form) {
     // Get errors
     const errors = {
-      content: checkRequired(
-        form,
-        '[name="content"]',
-        ERROR_MESSAGE.CONTENT_REQUIRED
-      ),
+      content: checkRequired(form, '[name="content"]', ERROR_MESSAGE.CONTENT_REQUIRED),
     };
 
     // Set errors
@@ -126,7 +121,7 @@ export default class PostDetailView {
   }
 
   /**
-   * Register submit event for comment form when add edit comment
+   * Bind submit event for comment form when add edit comment
    * @param {Function} onSubmit
    */
   bindAddEditComment(onSubmit) {
@@ -137,6 +132,7 @@ export default class PostDetailView {
 
       // Validation form values
       const isFormValid = this.validateCommentForm(formCommentElement);
+      // If valid trigger submit callback, otherwise show validation errors
       if (isFormValid) {
         await onSubmit(formValues);
       }
@@ -148,7 +144,7 @@ export default class PostDetailView {
   }
 
   /**
-   * Register click event for remove comment
+   * Bind click event for remove comment
    * @param {Function} handle
    */
   bindRemoveComment(handle) {
@@ -188,19 +184,14 @@ export default class PostDetailView {
     // Set text content for elements
     setTextContent(document, '#post-detail-title', title);
     setTextContent(document, '#post-detail-username', user.userName);
-    setTextContent(
-      document,
-      '#post-detail-date',
-      dayjs(createdDate).format('DD/MM/YYYY')
-    );
+    setTextContent(document, '#post-detail-date', dayjs(createdDate).format('DD/MM/YYYY'));
     setTextContent(document, '#post-detail-content', content);
     setTextContent(document, '#post-detail-type', type);
 
     // Display form add comment if the user logged
     if (this.userStorage) {
       // Clone add comment template for add comment element
-      const formCommentElement =
-        this.formCommentTemplate.content.firstElementChild.cloneNode(true);
+      const formCommentElement = this.formCommentTemplate.content.firstElementChild.cloneNode(true);
       // Append form comment element in page
       this.addCommentElement.appendChild(formCommentElement);
 
@@ -225,7 +216,7 @@ export default class PostDetailView {
   }
 
   /**
-   * Add event click for logout
+   * Bind click event for logout
    * @param {Function} handle
    */
   bindLogout(handle) {

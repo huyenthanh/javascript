@@ -4,3 +4,4 @@ import PostListView from '../views/post-list';
 
 const posts = new PostListController(new PostListModel(), new PostListView());
 posts.getPostList();
+posts.callViewHandler();

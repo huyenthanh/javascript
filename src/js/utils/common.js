@@ -7,6 +7,7 @@ import { Storage } from '../utils';
 function getElementById(selector) {
   const element = document.getElementById(selector);
   if (!element) return;
+
   return element;
 }
 
@@ -50,7 +51,9 @@ function setFieldValue(form, selector, value) {
   if (!form) return;
 
   const field = form.querySelector(selector);
-  if (field) field.value = value;
+  if (field) {
+    field.value = value;
+  }
 }
 
 /**

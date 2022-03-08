@@ -9,6 +9,12 @@ export default class AuthController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+  }
+
+  /**
+   * Method Call handler from login view
+   */
+  callViewHandler() {
     this.view.bindLogin(this.handleLogin);
   }
 
@@ -26,7 +32,7 @@ export default class AuthController {
         // Save user to local storage
         Storage.setItem(user);
         // Switch to home page
-        window.location.assign('../');
+        window.location.assign('../index.html');
       } else {
         Toast.error(LOGIN_MESSAGE.FAILED);
       }

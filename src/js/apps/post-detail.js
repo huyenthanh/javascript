@@ -4,3 +4,4 @@ import PostDetailView from '../views/post-detail';
 
 const postDetail = new PostDetailController(new PostDetailModel(), new PostDetailView());
 postDetail.getPostValues();
+postDetail.callViewHandler();

@@ -4,3 +4,4 @@ import AddEditPostView from '../views/add-edit-post';
 
 const addEditPost = new AddEditPostController(new AddEditPostModel(), new AddEditPostView());
 addEditPost.getDefaultValues();
+addEditPost.callViewHandler();
