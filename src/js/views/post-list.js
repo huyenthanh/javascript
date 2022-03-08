@@ -1,6 +1,5 @@
-import dayjs from 'dayjs';
 import { REMOVE_MESSAGE } from '../constants';
-import { isUserAuthenticated, getElementById, setTextContent, isOwner } from '../utils';
+import { isUserAuthenticated, getElementById, setTextContent, isOwner, formatDate } from '../utils';
 
 /**
  * @class PostListView
@@ -39,7 +38,7 @@ export default class PostListView {
     // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
-    setTextContent(liElement, '[data-id="date"]', dayjs(createdDate).format('DD/MM/YYYY'));
+    setTextContent(liElement, '[data-id="date"]', formatDate(createdDate));
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post

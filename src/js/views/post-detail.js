@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { ERROR_MESSAGE, REMOVE_MESSAGE } from '../constants';
 import {
   getElementById,
@@ -9,6 +8,7 @@ import {
   getFormValues,
   checkRequired,
   setFieldValue,
+  formatDate,
 } from '../utils';
 
 /**
@@ -184,7 +184,7 @@ export default class PostDetailView {
     // Set text content for elements
     setTextContent(document, '#post-detail-title', title);
     setTextContent(document, '#post-detail-username', user.userName);
-    setTextContent(document, '#post-detail-date', dayjs(createdDate).format('DD/MM/YYYY'));
+    setTextContent(document, '#post-detail-date', formatDate(createdDate));
     setTextContent(document, '#post-detail-content', content);
     setTextContent(document, '#post-detail-type', type);
 
