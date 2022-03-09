@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE, REGEX_VALUE } from '../constants';
 
 const isRequired = (value) => {
-  return Boolean(value);
+  return Boolean(value.trim());
 };
 
 const isEmailValid = (email) => {
@@ -42,7 +42,7 @@ const checkPassword = (form) => {
   if (!passwordElement) return;
 
   if (!isRequired(passwordElement.value)) {
-    return ERROR_MESSAGE.EMAIL_REQUIRED;
+    return ERROR_MESSAGE.PASSWORD_REQUIRED;
   } else if (!isPasswordValid(passwordElement.value)) {
     return ERROR_MESSAGE.PASSWORD_VALID;
   } else {
