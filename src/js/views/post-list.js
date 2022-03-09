@@ -31,7 +31,7 @@ export default class PostListView {
   createPostElement(post) {
     if (!post) return;
 
-    const { title, user, createdDate, type, userId } = post;
+    const { title, user, createdAt, type, userId } = post;
 
     // Clone node post template for li element
     const liElement = this.postTemplate.content.firstElementChild.cloneNode(true);
@@ -40,7 +40,7 @@ export default class PostListView {
     // Set text content for element
     setTextContent(liElement, '[data-id="title"]', title);
     setTextContent(liElement, '[data-id="name"]', user.userName);
-    setTextContent(liElement, '[data-id="date"]', formatDate(createdDate));
+    setTextContent(liElement, '[data-id="date"]', formatDate(createdAt));
     setTextContent(liElement, '[data-id="type"]', type);
 
     // If have id in local storage user equal userId in post
