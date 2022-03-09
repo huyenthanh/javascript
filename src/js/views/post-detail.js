@@ -34,6 +34,10 @@ export default class PostDetailView {
     isUserAuthenticated();
   }
 
+
+  /**
+   * Add submit event for edit comment
+   */
   registerEditCommentEvent(formEditElement) {
     formEditElement.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -154,7 +158,7 @@ export default class PostDetailView {
   }
 
   /**
-   * Bind submit event for comment form when add edit comment
+   * Bind submit event for comment form when add comment
    * @param {Function} onSubmit
    */
   bindAddComment(onSubmit) {
@@ -174,7 +178,7 @@ export default class PostDetailView {
   }
 
   /**
-   * Bind submit event for comment form when add edit comment
+   * Bind submit event for comment form when edit comment
    * @param {Function} onSubmit
    */
   bindEditComment(onSubmit) {
