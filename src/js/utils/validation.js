@@ -60,7 +60,7 @@ const checkRequired = (form, selector, message) => {
   const element = form.querySelector(selector);
   if (!element) return;
 
-  if (!isRequired(element.value.trim())) {
+  if (!isRequired(element.value)) {
     return message;
   } else {
     return '';
