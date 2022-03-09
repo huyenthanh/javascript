@@ -51,13 +51,6 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "postId": 1,
-      "userId": 1,
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ducimus odio voluptatem",
-      "createdAt": 1646808030838
-    },
-    {
       "id": 2,
       "postId": 1,
       "userId": 2,
