@@ -10,7 +10,7 @@ export default class PostModel {
    * Call api get all post
    */
   async getAll(params) {
-    return await Api.getAll(`${URL_API.POST_URL}?_expand=user`, params);
+    return await Api.getAll(`${URL_API.POST_URL}?_expand=user&_sort=createdDate&_order=desc`, params);
   }
 
   /**
@@ -88,7 +88,7 @@ export default class PostModel {
    * @param {string} id
    */
   async getComments(id) {
-    const url = `${URL_API.POST_URL}/${id}${URL_API.COMMENT_URL}?_expand=user`;
+    const url = `${URL_API.POST_URL}/${id}${URL_API.COMMENT_URL}?_expand=user&_sort=createdDate&_order=desc`;
 
     return await Api.getById(url);
   }
