@@ -69,7 +69,7 @@ export default class PostListController {
    * @param {string} value this is a value search in input
    */
   handSearchInput = async (value) => {
-    this.handleSearchChange('title_like', value);
+    await this.handleSearchChange('title_like', value);
   };
 
   /**

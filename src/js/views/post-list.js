@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce';
 import { REMOVE_MESSAGE } from '../constants';
 import { isUserAuthenticated, getElementById, setTextContent, isOwner, formatDate } from '../utils';
 
@@ -129,9 +130,10 @@ export default class PostListView {
     const searchInput = getElementById('search-input');
     if (!searchInput) return;
 
-    searchInput.addEventListener('input', (event) => {
-      handle(event.target.value);
-    });
+    // debounce = exec function after a period of time receiving no trigger
+    const debounceSearch = debounce((event) => handle(event.target.value), 500);
+
+    searchInput.addEventListener('input', debounceSearch);
   }
 
   /**
