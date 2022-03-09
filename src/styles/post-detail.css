@@ -13,14 +13,12 @@
   border-top: 1px solid #d6d6d7;
 }
 
-.edit-button,
-.remove-button {
-  opacity: 0.7;
+.edit-button {
+  color: #198754;
 }
 
-.edit-button:hover,
-.remove-button:hover {
-  opacity: 1;
+.remove-button {
+  color: #dc3545;
 }
 
 .invalid-feedback {
