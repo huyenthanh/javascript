@@ -19,8 +19,7 @@ export default class PostDetailView {
   constructor() {
     this.ulElement = getElementById('comment-list');
     this.commentTemplate = getElementById('comment-template');
-    this.formCreateTemplate = getElementById('form-create-template');
-    this.formEditTemplate = getElementById('form-edit-template');
+    this.formTemplate = getElementById('form-template');
     this.iconsTemplate = getElementById('icons-template');
     this.addCommentElement = getElementById('add-comment');
     this.logoutElement = document.querySelector('.logout');
@@ -91,7 +90,7 @@ export default class PostDetailView {
     if (editButton) {
       editButton.addEventListener('click', () => {
         // Clone add comment template for add comment element
-        const formEditElement = this.formEditTemplate.content.firstElementChild.cloneNode(true);
+        const formEditElement = this.formTemplate.content.firstElementChild.cloneNode(true);
         // Query selector
         const commentContent = liElement.querySelector('[data-id="content"]');
 
@@ -245,7 +244,7 @@ export default class PostDetailView {
     // Display form add comment if the user logged
     if (this.userStorage) {
       // Clone add comment template for add comment element
-      const formCreateElement = this.formCreateTemplate.content.firstElementChild.cloneNode(true);
+      const formCreateElement = this.formTemplate.content.firstElementChild.cloneNode(true);
       // Append form comment element in page
       this.addCommentElement.appendChild(formCreateElement);
 
