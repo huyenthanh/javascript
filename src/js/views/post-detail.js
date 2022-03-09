@@ -179,12 +179,12 @@ export default class PostDetailView {
    * @param {object} post
    */
   renderPostDetail(post) {
-    const { title, user, createdDate, content, type } = post;
+    const { title, user, createdAt, content, type } = post;
 
     // Set text content for elements
     setTextContent(document, '#post-detail-title', title);
     setTextContent(document, '#post-detail-username', user.userName);
-    setTextContent(document, '#post-detail-date', formatDate(createdDate));
+    setTextContent(document, '#post-detail-date', formatDate(createdAt));
     setTextContent(document, '#post-detail-content', content);
     setTextContent(document, '#post-detail-type', type);
 

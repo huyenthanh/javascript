@@ -64,7 +64,6 @@ export default class PostDetailController {
         ...formData,
         postId: this.postId,
         userId: user.id,
-        createdDate: new Date(),
       };
 
       // Get values form to model

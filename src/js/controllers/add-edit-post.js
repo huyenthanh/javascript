@@ -33,7 +33,6 @@ export default class AddEditPostController {
       // Create values add post
       const addFormData = {
         ...formData,
-        createdDate: new Date(),
         userId: user.id,
       };
 
