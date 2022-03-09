@@ -17,7 +17,8 @@ export default class PostDetailController {
    */
   callViewHandler() {
     this.view.bindLogout(this.handleLogout);
-    this.view.bindAddEditComment(this.handleCommentFormSubmit);
+    this.view.bindAddComment(this.handleAddComment);
+    this.view.bindEditComment(this.handleEditComment);
     this.view.bindRemoveComment(this.handleRemoveComment);
   }
 
@@ -51,10 +52,10 @@ export default class PostDetailController {
   }
 
   /**
-   * Method handle comment form submit
+   * Method handle submit form add comment
    * @param {object} formData
    */
-  handleCommentFormSubmit = async (formData) => {
+  handleAddComment = async (formData) => {
     try {
       // Get user data to local storage
       const user = Storage.getItem();
@@ -66,13 +67,25 @@ export default class PostDetailController {
         userId: user.id,
       };
 
-      // Get values form to model
-      if (formData.id) {
-        await this.model.updateComment(formData); // If have id in comment form call model update post
-      } else {
-        await this.model.addComment(addFormData); // If don't have id in comment form call model add post
-      }
+      await this.model.addComment(addFormData);
 
+      // Show success message
+      Toast.success(SUBMIT_MESSAGE.COMMENT_SUCCEED);
+
+      // Call method get list comment
+      this.getCommentList();
+    } catch (error) {
+      Toast.error(error);
+    }
+  };
+
+  /**
+   * Method handle submit form edit comment
+   * @param {object} formData
+   */
+  handleEditComment = async (formData) => {
+    try {
+      await this.model.updateComment(formData);
       // Show success message
       Toast.success(SUBMIT_MESSAGE.COMMENT_SUCCEED);
 
