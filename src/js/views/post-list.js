@@ -10,6 +10,7 @@ export default class PostListView {
     this.ulElement = getElementById('post-list');
     this.postTemplate = getElementById('post-template');
     this.iconsTemplate = getElementById('icons-template');
+    this.postResultElement = getElementById('post-result');
     this.logoutElement = document.querySelector('.logout');
   }
 
@@ -140,8 +141,18 @@ export default class PostListView {
    * @param {array} posts
    */
   renderPostList(posts) {
+    // Set text content result when post list empty
+    if (posts.length === 0) {
+      // Clear current list
+      this.ulElement.textContent = '';
+
+      return (this.postResultElement.textContent = 'No results');
+    }
+
     // Clear current list
     this.ulElement.textContent = '';
+    // Clear text no result
+    this.postResultElement.textContent = '';
 
     // For each post, create a li element and append it to the page
     posts.forEach((post) => {
