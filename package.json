@@ -5,6 +5,7 @@
   "scripts": {
     "json-server": "node src/json-server/server.js",
     "start": "parcel src/index.html",
+    "build": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
